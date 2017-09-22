@@ -1,1 +1,34 @@
 <h1>Root</h1>
+<ul>
+  <% if admin_signed_in? %>
+    <li>
+      Admin has sign in !
+    </li>
+    <li>
+      <%= link_to 'Admin Sign out', destroy_admin_session_path, method: :delete %>        
+    </li>
+  <% else %>
+    <li>
+      <%= link_to 'Admin Sign in', new_admin_session_path %>
+    </li>
+    <li>
+      <%= link_to 'Admin Sign up', new_admin_registration_path %>
+    </li>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <li>
+      User has sign in !
+    </li>
+    <li>
+      <%= link_to 'User Sign out', destroy_user_session_path, method: :delete %>        
+    </li>
+  <% else %>
+    <li>
+      <%= link_to 'User Sign in', new_user_session_path %>
+    </li>
+    <li>
+      <%= link_to 'User Sign up', new_user_registration_path %>
+    </li>
+  <% end %>
+</ul>
