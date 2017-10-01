@@ -1,34 +1,22 @@
-<h1>Root</h1>
-<ul>
-  <% if admin_signed_in? %>
-    <li>
-      Admin has sign in !
-    </li>
-    <li>
-      <%= link_to 'Admin Sign out', destroy_admin_session_path, method: :delete %>        
-    </li>
-  <% else %>
-    <li>
-      <%= link_to 'Admin Sign in', new_admin_session_path %>
-    </li>
-    <li>
-      <%= link_to 'Admin Sign up', new_admin_registration_path %>
-    </li>
-  <% end %>
-
-  <% if user_signed_in? %>
-    <li>
-      User has sign in !
-    </li>
-    <li>
-      <%= link_to 'User Sign out', destroy_user_session_path, method: :delete %>        
-    </li>
-  <% else %>
-    <li>
-      <%= link_to 'User Sign in', new_user_session_path %>
-    </li>
-    <li>
-      <%= link_to 'User Sign up', new_user_registration_path %>
-    </li>
-  <% end %>
-</ul>
+<div class="home-screen">
+  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
+  <div class="home-content">
+    <div class="container">
+      <div class="row height-100vh align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-8 col-xs-12">
+              <h1 class="main-text-logo text-center header-font">Make Friend Around The World</h1>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-8 col-xs-12 home-nav-box">
+              <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light btn-lg btn-block" %>
+              <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light btn-lg btn-block margin-top-20" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

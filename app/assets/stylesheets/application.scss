@@ -1,0 +1,34 @@
+/* Self Script */
+@import 'home';
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura:400,700');
+
+/* Parallax styles */
+
+.mouse-parallax-bg {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+/* End Parallax styles */
+
+html, body {
+  font-family: 'Jura', sans-serif;
+}
+
+.header-font {
+  font-family: 'Bungee Inline', cursive;
+}
+
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+
+.height-100vh {
+  height: 100vh;
+}

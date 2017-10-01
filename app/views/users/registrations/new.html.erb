@@ -1,34 +1,66 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="user-screen">
+  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
+  <div class="user-content">
+    <div class="container">
+      <div class="row height-100vh align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-8 col-xs-12">
+              <div class="user-main-block">
+                <h1 class="main-text-logo text-center header-font">Sign up</h1>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "user-registration-form"}) do |f| %>
+                  <%#= byebug %>
+                  <div class="form-group">
+                    <% if resource.errors.empty? %>
+                      <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
+                    <% else %>
+                      <% if resource.errors.messages[:email].empty? %>
+                        <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-valid', placeholder: "Email" %>
+                      <% else %>
+                        <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                        <div class="invalid-feedback">
+                          <%= "Email " + resource.errors.messages[:email][0] %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="form-group">
+                    <% if resource.errors.empty? %>
+                      <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Password" %>
+                    <% else %>
+                      <% if resource.errors.messages[:password].empty? %>
+                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-valid', placeholder: "Password" %>
+                      <% else %>
+                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Password" %>
+                        <div class="invalid-feedback">
+                          <%= "Password " + resource.errors.messages[:password][0] %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="form-group">
+                    <% if resource.errors.empty? %>
+                      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Password confirmation" %>
+                    <% else %>
+                      <% if resource.errors.messages[:password_confirmation].empty? && resource.errors.messages[:password].empty? %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-valid', placeholder: "Password confirmation" %>
+                      <% else %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Password confirmation" %>
+                        <div class="invalid-feedback">
+                          <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] unless resource.errors.messages[:password_confirmation].empty? %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit "Sign up", class: "btn btn-outline-light btn-lg btn-block" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

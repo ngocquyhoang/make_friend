@@ -1,0 +1,108 @@
+/* Self Script */
+@import 'dashboard';
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura:400,700');
+
+/* Parallax styles */
+
+.mouse-parallax-bg {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+/* End Parallax styles */
+
+html, body {
+  font-family: 'Jura', sans-serif;
+}
+
+.header-font {
+  font-family: 'Bungee Inline', cursive;
+}
+
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+
+.height-100vh {
+  height: 100vh;
+}
+
+
+.user-screen {
+  #parallaxBackground {
+    background-image: url(asset-path('bg-home.jpg'));
+    background-repeat: no-repeat;
+  }
+
+  .user-content {
+    background-color: rgba(0, 0, 0, 0.55)
+  }
+
+  .main-text-logo {
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 45px;
+    line-height: 50px;
+  }
+
+  .user-main-block {
+    padding: 50px 100px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+  }
+
+  .user-registration-form {
+    .form-control {
+      background-color: transparent;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+
+      &::placeholder {
+        color: #ffffff;
+      }
+
+      &.is-valid {
+        border-color: #28a745;
+        color: #28a745;
+      }
+
+      &.is-invalid {
+        border-color: #dc3545;
+        color: #dc3545;
+
+        &::placeholder {
+          color: #dc3545;
+        }
+      }
+    }
+
+    .invalid-feedback {
+      font-size: 16px;
+    }
+
+    .btn {
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &:hover {
+        color: #000000;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .user-screen {
+      #parallaxBackground {
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+}
+

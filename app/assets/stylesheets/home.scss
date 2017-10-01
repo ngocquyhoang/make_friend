@@ -1,3 +1,35 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.home-screen {
+  #parallaxBackground {
+    background-image: url(asset-path('bg-home.jpg'));
+    background-repeat: no-repeat;
+  }
+
+  .home-content {
+    background-color: rgba(0, 0, 0, 0.35)
+  }
+
+  .main-text-logo {
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 45px;
+    line-height: 50px;
+  }
+
+  .home-nav-box .btn {
+    font-size: 25px;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home-screen {
+      #parallaxBackground {
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+}

@@ -5,12 +5,10 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
   end
 
-  devise_for :admins, path: 'admins', controllers: { 
+  devise_for :admins, path: 'admins', skip: :registrations, controllers: { 
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
-    registrations: 'admins/registrations'
   }
-
 
   namespace :users do
     resources :dashboard, only: [:index]
