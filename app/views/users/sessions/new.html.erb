@@ -1,26 +1,102 @@
-<h2>LOG IN</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="user-screen">
+  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
+  <div class="user-content">
+    <div class="container">
+      <div class="row height-100vh align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-8 col-xs-12">
+              <div class="user-main-block">
+                <div class="user-header table-panel">
+                  <div class="table-child ver-mid">
+                    <%= link_to "<", root_path, class: "back-to-home-button", title: "Go Home" %>
+                  </div>
+                  <div class="table-child">
+                    <h1 class="main-text-logo text-center header-font">Sign In</h1>
+                  </div>
+                </div>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "user-registration-form"}) do |f| %>
+                  <div class="invalid-feedback"></div>
+                  <div class="form-group js--email-field">
+                    <% if resource.errors.empty? %>
+                      <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
+                    <% else %>
+                      <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                    <% end %>
+                  </div>
+                  <div class="form-group js--password-field">
+                    <% if resource.errors.empty? %>
+                      <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Password" %>
+                    <% else %>
+                      <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Password" %>
+                    <% end %>
+                  </div>
+                  <%# byebug %>
+                  <% if devise_mapping.rememberable? %>
+                    <div class="form-group">
+                      <%= f.check_box :remember_me %>
+                    </div>
+                  <% end %>
+                  <div class="form-group">
+                    <%= f.submit "Sign in", class: "btn btn-outline-light btn-lg btn-block" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
-<%= render "users/shared/links" %>
+<!-- <script type="text/javascript">
+  $( '#user_email' ).keyup( () => {
+    if ( validateEmail( $( '#user_email' ).val() ) ) {
+      $( '#user_email' ).removeClass('is-invalid');
+      $( '#user_email' ).addClass('is-valid');
+      $( '.js--email-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_email' ).removeClass('is-valid');
+      $( '#user_email' ).addClass('is-invalid');
+      if ( $( '#user_email' ).val() == "" ) {
+        $( '.js--email-field .invalid-feedback' ).text("Email can't be blank")
+      } else {
+        $( '.js--email-field .invalid-feedback' ).text("Email is invalid")
+      }
+    }
+  })
+
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
+
+  $( '#user_password' ).keyup( () => {
+    if ( $( '#user_password' ).val().length >= 8 ) {
+      $( '#user_password' ).removeClass('is-invalid');
+      $( '#user_password' ).addClass('is-valid');
+      $( '.js--password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_password' ).removeClass('is-valid');
+      $( '#user_password' ).addClass('is-invalid');
+      if ( $( '#user_password' ).val() == "" ) {
+        $( '.js--password-field .invalid-feedback' ).text("Password can't be blank")
+      } else {
+        $( '.js--password-field .invalid-feedback' ).text("Password is too short (minimum is 8 characters)")
+      }
+    }
+  })
+
+  $( '#user_password_confirmation' ).keyup( () => {
+    if ( $( '#user_password_confirmation' ).val() == $( '#user_password' ).val() && $( '#user_password' ).val().length >= 8 ) {
+      $( '#user_password_confirmation' ).removeClass('is-invalid');
+      $( '#user_password_confirmation' ).addClass('is-valid');
+      $( '.js--password-confirmation-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_password_confirmation' ).removeClass('is-valid');
+      $( '#user_password_confirmation' ).addClass('is-invalid');
+      $( '.js--password-confirmation-field .invalid-feedback' ).text("Password confirmation doesn't match Password")
+    }
+  })
+</script> -->
