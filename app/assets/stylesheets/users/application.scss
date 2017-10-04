@@ -53,7 +53,7 @@ html, body {
   }
 
   .user-content {
-    background-color: rgba(0, 0, 0, 0.55)
+    background-color: rgba(0, 0, 0, 0.35)
   }
 
   .user-header {
@@ -61,6 +61,31 @@ html, body {
 
     & > .table-child:first-child {
       width: 50px;
+    }
+  }
+
+  .user-block-note {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
+
+  .error-message {
+    color: #dc3545;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .remember-block {
+    .table-panel > .table-child:first-child {
+      width: 80px;
+    }
+
+    .remember-text {
+      font-size: 18px;
+      color: #ffffff
     }
   }
 
@@ -87,7 +112,7 @@ html, body {
 
   .user-main-block {
     padding: 50px 100px;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.35);
     border-radius: 5px;
   }
 
@@ -129,6 +154,78 @@ html, body {
       }
     }
   }
+
+  .btn {
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+}
+
+.switch--toggle {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 34px;
+  margin-bottom: 0px;
+
+  .switch--checkbox {
+    display: none;
+  }
+
+  .switch--slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .6s;
+    transition: .6s;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+  }
+
+  .switch--checkbox:checked + .switch--slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+
+  &.switch--theme-green {
+    .switch--checkbox:checked + .switch--slider {
+      background-color: #28a745;
+    }
+
+    .switch--checkbox:focus + .switch--slider {
+      box-shadow: 0 0 1px #28a745;
+    }
+  }
+
+  &.switch--rectangular {
+    .switch--slider {
+      border-radius: 3px;
+
+      &:before {
+        border-radius: 3px;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -159,11 +256,18 @@ html, body {
     }
 
     .user-main-block {
-      padding: 20px 50px;
+      padding: 30px 50px;
     }
   }
 }
 
+@media screen and (max-width: 768px) {
+  .user-screen {
+    .btn-margin-sm-bottom {
+      margin-bottom: 20px;
+    }
+  }
+}
 
 @media screen and (max-width: 576px) {
   .user-screen {

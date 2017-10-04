@@ -1,16 +1,40 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="user-screen">
+  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
+  <div class="user-content">
+    <div class="container">
+      <div class="row height-100vh align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-8 col-xs-12">
+              <div class="user-main-block">
+                <div class="user-header table-panel">
+                  <div class="table-child ver-mid">
+                    <%= link_to "<", root_path, class: "back-to-home-button", title: "Go Home" %>
+                  </div>
+                  <div class="table-child">
+                    <h1 class="main-text-logo text-center header-font">Forgot your password?</h1>
+                  </div>
+                </div>
+                <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "user-registration-form"}) do |f| %>
+                  <% unless resource.errors.empty? %>
+                    <div class="error-message"><%= resource.errors.full_messages[0] %></div>
+                  <% end %>
+                  <div class="form-group js--email-field">
+                    <% if resource.errors[:email].empty? %>
+                      <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
+                    <% else %>
+                      <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                    <% end %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit "Send me reset password instructions", class: "btn btn-outline-light btn-lg btn-block" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

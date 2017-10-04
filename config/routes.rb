@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :dashboard, only: [:index]
+    
+    devise_scope :user do 
+      get '/password' => 'passwords#index', as: 'default_path'
+      get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'
+    end
   end
   
   devise_for :users, path: 'users', controllers: { 
