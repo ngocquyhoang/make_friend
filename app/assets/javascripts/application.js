@@ -3,3 +3,4 @@
 //= require 'cable'
 //= require 'home'
 //= require 'mouse.parallax'
+//= require 'pnotify.min'

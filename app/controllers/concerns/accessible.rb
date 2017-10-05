@@ -6,7 +6,7 @@ module Accessible
 
   protected
   def check_user
-    flash.clear
+    # flash.clear
     if current_admin
       redirect_to( admins_dashboard_index_path ) && return
     elsif current_user
