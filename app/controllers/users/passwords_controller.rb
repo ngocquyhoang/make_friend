@@ -1,10 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
   layout :user_layout
 
-  def index
-    redirect_to new_user_password_path
-  end
-
   def send_instructions_successfull
   end
 

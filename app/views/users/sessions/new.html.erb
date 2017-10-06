@@ -5,7 +5,7 @@
       <div class="row height-100vh align-items-center">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-sm-8 col-xs-12">
+            <div class="col-md-8 col-sm-10 col-xs-12">
               <div class="user-main-block">
                 <div class="user-header table-panel">
                   <div class="table-child ver-mid">
@@ -55,6 +55,7 @@
                   <div class="form-group">
                     <%= f.submit "Sign in", class: "btn btn-outline-light btn-lg btn-block" %>
                   </div>
+                  <%= render 'users/shared/links' %>
                 <% end %>
               </div>
             </div>
@@ -67,6 +68,7 @@
 
 <script type="text/javascript">
   $( '#user_email' ).keyup( () => {
+    $( '.user-registration-form .error-message' ).text( '' )
     if ( validateEmail( $( '#user_email' ).val() ) ) {
       $( '#user_email' ).removeClass('is-invalid');
       $( '#user_email' ).addClass('is-valid');
@@ -75,9 +77,9 @@
       $( '#user_email' ).removeClass('is-valid');
       $( '#user_email' ).addClass('is-invalid');
       if ( $( '#user_email' ).val() == "" ) {
-        $( '.js--email-field .invalid-feedback' ).text("Email can't be blank")
+        $( '.js--email-field .invalid-feedback' ).text( "Email can't be blank" )
       } else {
-        $( '.js--email-field .invalid-feedback' ).text("Email is invalid")
+        $( '.js--email-field .invalid-feedback' ).text( 'Email is invalid' )
       }
     }
   })
@@ -88,10 +90,11 @@
   }
 
   $( '#user_password' ).keyup( () => {
+    $( '.user-registration-form .error-message' ).text( '' )
     if ( $( '#user_password' ).val() == "" ) {
       $( '#user_password' ).removeClass('is-valid');
       $( '#user_password' ).addClass('is-invalid');
-      $( '.js--password-field .invalid-feedback' ).text("Password can't be blank")
+      $( '.js--password-field .invalid-feedback' ).text( "Password can't be blank" )
     } else {
       $( '#user_password' ).removeClass('is-invalid');
       $( '#user_password' ).addClass('is-valid');

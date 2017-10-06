@@ -5,12 +5,12 @@
       <div class="row height-100vh align-items-center">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-8 col-xs-12">
+            <div class="col-md-6 col-sm-10 col-xs-12">
               <h1 class="main-text-logo text-center header-font">Make Friend Around The World</h1>
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-md-4 col-sm-8 col-xs-12 home-nav-box">
+            <div class="col-md-4 col-sm-10 col-xs-12 home-nav-box">
               <% if user_signed_in? || admin_signed_in? %>
                 <% if current_user %>
                   <%= link_to "Go to Dashboard", users_dashboard_index_path, class: "btn btn-outline-light btn-lg btn-block" %>

@@ -32,6 +32,10 @@ html, body {
   margin-top: 20px !important;
 }
 
+.margin-left-20 {
+  margin-left: 20px !important;
+}
+
 .height-100vh {
   height: 100vh;
 }
@@ -47,6 +51,16 @@ html, body {
       vertical-align: middle;
     }
   }
+}
+
+.no-outline:active,
+.no-outline:focus {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
 }
 
 .user-screen {
@@ -117,6 +131,16 @@ html, body {
     padding: 50px 100px;
     background-color: rgba(255, 255, 255, 0.35);
     border-radius: 5px;
+  }
+
+  .form-shared-link {
+    font-size: 18px;
+    line-height: 24px;
+
+    .shared-link {
+      text-decoration: none;
+      margin-right: 20px;
+    }
   }
 
   .user-registration-form {
