@@ -1,16 +1,62 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<div class="user-screen">
+  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
+  <div class="user-content">
+    <div class="container">
+      <div class="row height-100vh align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-10 col-xs-12">
+              <div class="user-main-block">
+                <div class="user-header table-panel">
+                  <div class="table-child ver-mid">
+                    <%= link_to "<", root_path, class: "back-to-home-button", title: "Go Home" %>
+                  </div>
+                  <div class="table-child">
+                    <h1 class="main-text-logo text-center header-font">confirm email</h1>
+                  </div>
+                </div>
+                <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "user-registration-form"}) do |f| %>
+                  <div class="error-message"><%= resource.errors.full_messages[0] unless resource.errors.empty? %></div>
+                  <div class="form-group js--email-field">
+                    <% if resource.errors[:email].empty? %>
+                      <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control form-control-lg', placeholder: "Email" %>
+                    <% else %>
+                      <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                    <% end %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit "confirm email", class: "btn btn-outline-light btn-lg btn-block" %>
+                  </div>
+                  <%= render 'users/shared/links' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+<script type="text/javascript">
+  $( '#user_email' ).keyup( () => {
+    if ( validateEmail( $( '#user_email' ).val() ) ) {
+      $( '#user_email' ).removeClass('is-invalid');
+      $( '#user_email' ).addClass('is-valid');
+      $( '.error-message' ).text('')
+    } else {
+      $( '#user_email' ).removeClass('is-valid');
+      $( '#user_email' ).addClass('is-invalid');
+      if ( $( '#user_email' ).val() == "" ) {
+        $( '.error-message' ).text("Email can't be blank")
+      } else {
+        $( '.error-message' ).text("Email is invalid")
+      }
+    }
+  })
 
-<%= render "users/shared/links" %>
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
+</script>

@@ -16,9 +16,7 @@
                   </div>
                 </div>
                 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "user-registration-form"}) do |f| %>
-                  <% unless resource.errors.empty? %>
-                    <div class="error-message"><%= resource.errors.full_messages[0] %></div>
-                  <% end %>
+                  <div class="error-message"><%= resource.errors.full_messages[0] unless resource.errors.empty? %></div>
                   <div class="form-group js--email-field">
                     <% if resource.errors[:email].empty? %>
                       <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
@@ -39,3 +37,26 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $( '#user_email' ).keyup( () => {
+    if ( validateEmail( $( '#user_email' ).val() ) ) {
+      $( '#user_email' ).removeClass('is-invalid');
+      $( '#user_email' ).addClass('is-valid');
+      $( '.error-message' ).text('')
+    } else {
+      $( '#user_email' ).removeClass('is-valid');
+      $( '#user_email' ).addClass('is-invalid');
+      if ( $( '#user_email' ).val() == "" ) {
+        $( '.error-message' ).text("Email can't be blank")
+      } else {
+        $( '.error-message' ).text("Email is invalid")
+      }
+    }
+  })
+
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
+</script>

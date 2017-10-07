@@ -40,6 +40,10 @@ html, body {
   height: 100vh;
 }
 
+#userMainNav {
+  background-color: #224455;
+}
+
 .table-panel {
   display: table;
   width: 100%;
@@ -179,6 +183,10 @@ html, body {
       &:hover {
         color: #000000;
       }
+
+      &.btn-modal-dark:hover {
+        color: #ffffff;
+      }
     }
   }
 
@@ -255,6 +263,16 @@ html, body {
   }
 }
 
+#troubleModal {
+  .modal-title {
+    text-transform: uppercase;
+  }
+
+  .modal-dialog {
+    margin-top: 150px;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .user-screen {
     #parallaxBackground {
@@ -286,6 +304,12 @@ html, body {
       padding: 30px 50px;
     }
   }
+
+  #troubleModal {
+    .modal-dialog {
+      margin-top: 100px;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -294,12 +318,28 @@ html, body {
       margin-bottom: 20px;
     }
   }
+
+  .margin-bottom-20-sm {
+    margin-bottom: 20px;
+  }
+
+  #troubleModal {
+    .modal-dialog {
+      margin-top: 50px;
+    }
+  }
 }
 
 @media screen and (max-width: 576px) {
   .user-screen {
     .user-main-block {
       padding: 20px 20px;
+    }
+  }
+
+  #troubleModal {
+    .modal-dialog {
+      margin-top: 30px;
     }
   }
 }

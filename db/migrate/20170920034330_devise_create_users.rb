@@ -42,6 +42,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :unlock_token,         unique: true
       t.datetime :locked_at
 
+      ## Delete
+      t.datetime :deleted_at
+
       t.timestamps null: false
     end
   end

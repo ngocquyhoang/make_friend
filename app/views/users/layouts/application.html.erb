@@ -13,8 +13,13 @@
     <%= javascript_include_tag 'users/application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  
+    <%= render "users/layouts/header" if @is_global_layout %>
+
     <%= yield %>
-    
+
+    <%= render "users/layouts/footer" if @is_global_layout  %>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     

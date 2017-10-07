@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
-  include Accessible
-  skip_before_action :check_user, only: :destroy
+  include AccessibleAdmin
+  skip_before_action :check_admin, only: :destroy
 
   layout :user_layout
 
