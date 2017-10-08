@@ -84,6 +84,89 @@ html, body {
 
 .main-content-fixed {
   margin-top: 70px;
+  min-height: calc(100vh - 338px)
+}
+
+#footer {
+  text-align: center;
+  margin-top: 20px;
+
+  .footer-logo-text {
+    font-family: 'Ribeye Marrow', cursive;
+
+    .stream-text {
+      font-size: 38px;
+      line-height: 40px
+    }
+
+    .sub-text {
+      font-size: 26px;
+      line-height: 28px
+    }
+  }
+
+  .footer-content {
+    height: 100%;
+
+    .row {
+      height: 100%;
+    }
+
+    .social-icon {
+      width: 70px;
+      height: 70px;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid #C63D0F;
+      border-radius: 70px;
+      transition: all 0.5s;
+
+      .fa {
+        font-size: 35px;
+        line-height: 70px;
+        color: #C63D0F;
+        transition: all 0.5s;
+      }
+
+      &:hover {
+        background-color: #C63D0F;
+
+        .fa {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  .main-footer {
+    padding: 35px 0px 25px;
+    background-color: #FDF3E7;
+    border-top: 2px solid #C63D0F;
+    position: relative;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -4px;
+      width: 100%;
+      height: 0px;
+      border-top: 1px solid #C63D0F
+    }
+  }
+
+  .sub-footer {
+    background-color: #C63D0F;
+    padding: 15px 0px;
+
+    .sub-footer-content a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
 }
 
 .table-panel {
@@ -369,6 +452,11 @@ html, body {
     .modal-dialog {
       margin-top: 50px;
     }
+  }
+
+  .main-content-fixed {
+    margin-top: 70px;
+    min-height: calc(100vh - 428px)
   }
 }
 

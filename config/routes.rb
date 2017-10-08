@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get '/password/send_instructions' => 'passwords#send_instructions_successfull', as: 'send_instructions_successfull'
     end
   end
+
+  get ':username', to: 'users#show', as: :user
   
   devise_for :users, path: 'users', controllers: { 
     sessions: 'users/sessions',
