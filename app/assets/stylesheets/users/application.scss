@@ -401,8 +401,11 @@ html, body {
 // User Profile
 
 .user-main-wrap {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
   .user-profile {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #C63D0F;
     border-radius: 5px;
 
@@ -411,11 +414,107 @@ html, body {
       width: 250px;
       margin: 0 auto;
 
+      .edit-user-avatar {
+        display: inline-block;
+      }
+
       .img-user-avatar {
         max-width: 100%;
         border-radius: 50%;
       }
     }
+
+    .user-information {
+      .user-information-list {
+        li {
+          padding: 12px 10px;
+          line-height: 18px;
+          font-size: 16px;
+          text-align: center;
+
+          &.infor-line {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+            text-align: left;
+          }
+        }
+
+        .infor-last-child {
+          border: 0px !important;
+        }
+
+        .infor-line .infor-label {
+          width: 100px;
+          font-weight: 600;
+        }
+
+        .username {
+          .user-name-link {
+            text-decoration: none;
+            font-size: 20px;
+            line-height: 22px;
+            color: #007bff;
+          }
+        }
+
+        .name-or-email {
+          font-size: 19px;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: #C63D0F;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+
+        .gender-icon {
+          font-size: 30px;
+          line-height: 30px;
+
+          .fa-mars {
+            color: #007bff;
+          }
+
+          .fa-venus {
+            color: #dc3545;
+          }
+        }
+
+        .verify-user {
+          cursor: pointer;
+          padding: 20px;
+          border-radius: 5px;
+          border: 0px;
+          font-size: 20px;
+          line-height: 22px;
+          color: #ffffff;
+
+          .fa {
+            margin-left: 10px;
+          }
+
+          &.is-pending {
+            background-color: #ffc107;
+          }
+
+          &.is-verified {
+            background-color: #28a745;
+          }
+        }
+
+        .verify-user-block {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+}
+
+#editUserAvatarModal {
+  .modal-title {
+    text-transform: uppercase;
+  }
+
+  .modal-dialog {
+    margin-top: 150px;
   }
 }
 

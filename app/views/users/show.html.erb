@@ -4,14 +4,20 @@
       <div class="col-md-4 col-sm-12">
         <div class="user-profile">
           <div class="user-avatar">
-            <%= avatar_for @user %>
+            <% if @user == current_user %>
+              <a href="#" data-toggle="modal" data-target="#editUserAvatarModal" class="edit-user-avatar no-outline">
+                <%= avatar_for @user %>
+              </a>
+            <% else %>
+              <%= avatar_for @user %>
+            <% end %>
           </div>
           <div class="user-information">
-            <ul class="user-information list-unstyled">
+            <ul class="user-information-list list-unstyled">
               <% if @user.username %>
-                <li><%= link_to "@#{@user.username}", user_path( @user.username ), class: "user-name" %></li>
+                <li class="username"><%= link_to "@#{@user.username}", user_path( @user.username ), class: "user-name-link" %></li>
               <% end %>
-              <li><%= @user.name? ? @user.name : @user.email %></li>
+              <li class="name-or-email"><%= @user.name? ? @user.name : @user.email %></li>
               <% if @user.gender? %>
                 <li class="gender-icon">
                   <% if @user.gender == "male" %>
@@ -22,32 +28,92 @@
                 </li>
               <% end %>
               <% if @user.dob? %>
-                <li>Birthday:  <%= @user.dob.strftime("%Y %B %d") %> </li>
+                <li class="infor-line text-center"><b><%= @user.dob.strftime("%Y %B %d") %> - <%= DateTime.now.year - @user.dob.year %> years old </b></li>
               <% end %>
               <% if @user.address? %>
-                <li>Address:  <%= @user.address %> </li>
+                <li class="infor-line">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid infor-label">
+                      Address:
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= @user.address %>
+                    </div>
+                  </div>
+                </li>
               <% end %>
               <% if @user.job? %>
-                <li>Job:  <%= @user.job %> </li>
+                <li class="infor-line">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid infor-label">
+                      Job:
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= @user.job %>
+                    </div>
+                  </div>
+                </li>
               <% end %>
               <% if @user.hobby? %>
-                <li>Hobby:  <%= @user.hobby %> </li>
+                <li class="infor-line">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid infor-label">
+                      Hobby:
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= @user.hobby %>
+                    </div>
+                  </div>
+                </li>
               <% end %>
               <% if @user.dislike? %>
-                <li>Dislike:  <%= @user.dislike %> </li>
+                <li class="infor-line">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid infor-label">
+                      Dislike:
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= @user.dislike %>
+                    </div>
+                  </div>
+                </li>
               <% end %>
               <% if @user.high_school? %>
-                <li>High school:  <%= @user.high_school %> </li>
+                <li class="infor-line">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid infor-label">
+                      High school:
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= @user.high_school %>
+                    </div>
+                  </div>
+                </li>
               <% end %>
               <% if @user.univesity? %>
-                <li>University:  <%= @user.univesity %> </li>
+                <li class="infor-line infor-last-child">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid infor-label">
+                      University:
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= @user.univesity %>
+                    </div>
+                  </div>
+                </li>
               <% end %>
               <li>
-                <% if @user.is_verified? %>
-                  <h6> Verified user </h6>
-                <% else %>
-                  <h6> Pending verify</h6>
-                <% end %>
+                <div class="verify-user-block">
+                  <% if @user.is_verified? %>
+                    <button type="button" class="no-outline verify-user is-verified" > 
+                      Verified user <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    </button>
+                  <% else %>
+                    <button type="button" class="no-outline verify-user is-pending" >
+                      Pending verify <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    </button>
+                  <% end %>
+                </div>
               </li>
             </ul>
           </div>
@@ -59,3 +125,25 @@
     </div>
   </div>
 </div>
+
+<% if @user == current_user %>
+  <div class="modal fade" id="editUserAvatarModal" tabindex="-1" role="dialog" aria-labelledby="editUserAvatarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserAvatarLabel">Upload avatar</h5>
+          <button type="button" class="close no-outline" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
