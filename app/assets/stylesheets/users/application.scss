@@ -5,7 +5,7 @@
 @import '../pnotify-style';
 
 /* Google Font */
-@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura:400,700');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura|Ribeye+Marrow:400,700');
 
 /* Parallax styles */
 
@@ -41,7 +41,49 @@ html, body {
 }
 
 #userMainNav {
-  background-color: #224455;
+  background-color: #C63D0F;
+  padding: 0px;
+
+  .main-logo-link {
+    text-decoration: none;
+    min-width: 220px;
+  }
+
+  .main-logo-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Ribeye Marrow', cursive;
+    font-size: 30px;
+    line-height: 60px;
+    color: #ffffff
+  }
+
+  .navbar-toggler {
+    border-color: #ffffff;
+    cursor: pointer;
+  }
+
+  #makeFriendUserNav {
+    .nav-link {
+      color: #ffffff;
+      line-height: 60px;
+      padding: 0px 20px;
+      font-size: 18px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background-color: #FDF3E7;
+
+      .nav-link {
+        color: #C63D0F;
+      }
+    }
+  }
+}
+
+.main-content-fixed {
+  margin-top: 70px;
 }
 
 .table-panel {
@@ -344,3 +386,7 @@ html, body {
   }
 }
 
+// #C63D0F
+// #3B3738
+// #FDF3E7
+// #7E8F7C

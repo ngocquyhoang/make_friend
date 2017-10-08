@@ -14,11 +14,15 @@
   </head>
   <body>
   
-    <%= render "users/layouts/header" if @is_global_layout %>
-
-    <%= yield %>
-
-    <%= render "users/layouts/footer" if @is_global_layout  %>
+    <% if @is_global_layout %>
+      <%= render "users/layouts/header" %>
+      <div class="main-content-fixed">
+        <%= yield %>
+      </div>
+      <%= render "users/layouts/footer" %>
+    <% else %>
+      <%= yield %>
+    <% end %>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
