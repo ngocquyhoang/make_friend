@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20170921102555) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name"
+    t.string "avatar"
+    t.string "gender"
     t.text "job"
     t.text "hobby"
     t.text "dislike"

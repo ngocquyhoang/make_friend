@@ -398,6 +398,27 @@ html, body {
   }
 }
 
+// User Profile
+
+.user-main-wrap {
+  .user-profile {
+    padding: 10px;
+    border: 1px solid #C63D0F;
+    border-radius: 5px;
+
+    .user-avatar {
+      padding: 25px;
+      width: 250px;
+      margin: 0 auto;
+
+      .img-user-avatar {
+        max-width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 992px) {
   .user-screen {
     #parallaxBackground {

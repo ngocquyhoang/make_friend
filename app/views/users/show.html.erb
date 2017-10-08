@@ -1,5 +1,61 @@
 <div class="user-main-wrap">
   <div class="container">
-    <h1><%= @user.email %></h1>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <div class="user-profile">
+          <div class="user-avatar">
+            <%= avatar_for @user %>
+          </div>
+          <div class="user-information">
+            <ul class="user-information list-unstyled">
+              <% if @user.username %>
+                <li><%= link_to "@#{@user.username}", user_path( @user.username ), class: "user-name" %></li>
+              <% end %>
+              <li><%= @user.name? ? @user.name : @user.email %></li>
+              <% if @user.gender? %>
+                <li class="gender-icon">
+                  <% if @user.gender == "male" %>
+                    <i class="fa fa-mars" aria-hidden="true"></i>
+                  <% elsif @user.gender == "female" %>
+                    <i class="fa fa-venus" aria-hidden="true"></i>
+                  <% end %>
+                </li>
+              <% end %>
+              <% if @user.dob? %>
+                <li>Birthday:  <%= @user.dob.strftime("%Y %B %d") %> </li>
+              <% end %>
+              <% if @user.address? %>
+                <li>Address:  <%= @user.address %> </li>
+              <% end %>
+              <% if @user.job? %>
+                <li>Job:  <%= @user.job %> </li>
+              <% end %>
+              <% if @user.hobby? %>
+                <li>Hobby:  <%= @user.hobby %> </li>
+              <% end %>
+              <% if @user.dislike? %>
+                <li>Dislike:  <%= @user.dislike %> </li>
+              <% end %>
+              <% if @user.high_school? %>
+                <li>High school:  <%= @user.high_school %> </li>
+              <% end %>
+              <% if @user.univesity? %>
+                <li>University:  <%= @user.univesity %> </li>
+              <% end %>
+              <li>
+                <% if @user.is_verified? %>
+                  <h6> Verified user </h6>
+                <% else %>
+                  <h6> Pending verify</h6>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <div class="user-content-box"></div>
+      </div>
+    </div>
   </div>
 </div>
