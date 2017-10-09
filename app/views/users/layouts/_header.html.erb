@@ -17,7 +17,11 @@
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "My Profile", user_path(current_user.username), class: "nav-link" %>
+            <% if current_user.username? %>
+              <%= link_to "My Profile", user_path(current_user.username), class: "nav-link" %>
+            <% else %>
+              <%= link_to "My Profile", user_path(current_user.id), class: "nav-link" %>
+            <% end %>
           </li>
           <li class="nav-item">
             <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>

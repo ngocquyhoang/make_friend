@@ -8,6 +8,7 @@ class UsersController < Users::AccessController
   private
 
   def set_user
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by_username( params[:username] )
+    @user = User.find_by_id( params[:username] ) unless @user
   end
 end

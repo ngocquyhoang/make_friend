@@ -14,7 +14,7 @@
           </div>
           <div class="user-information">
             <ul class="user-information-list list-unstyled">
-              <% if @user.username %>
+              <% if @user.username? %>
                 <li class="username"><%= link_to "@#{@user.username}", user_path( @user.username ), class: "user-name-link" %></li>
               <% end %>
               <li class="name-or-email"><%= @user.name? ? @user.name : @user.email %></li>
