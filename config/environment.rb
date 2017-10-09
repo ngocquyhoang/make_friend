@@ -1,5 +1,7 @@
 require_relative 'application'
 
+require 'carrierwave/orm/activerecord'
+
 Rails.application.initialize!
 
 ActionMailer::Base.smtp_settings = {

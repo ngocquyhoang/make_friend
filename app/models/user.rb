@@ -2,6 +2,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
+  mount_uploader :avatar, User::AvatarUploader
+  
   def soft_delete  
     update_attribute(:deleted_at, Time.current)  
   end 

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, path: "upload_avatar", as: "upload_avatar", only: :update
+
   get ':username', to: 'users#show', as: :user
   
   devise_for :users, path: 'users', controllers: { 

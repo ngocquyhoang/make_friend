@@ -408,6 +408,25 @@ html, body {
     padding: 12px;
     border: 1px solid #C63D0F;
     border-radius: 5px;
+    position: relative;
+
+    .link-edit-user-information {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: #C63D0F;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      text-align: center;
+
+      .fa {
+        color: #ffffff;
+        line-height: 40px;
+        font-size: 25px;
+      }
+    }
 
     .user-avatar {
       padding: 25px;
@@ -416,6 +435,25 @@ html, body {
 
       .edit-user-avatar {
         display: inline-block;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "\f083";
+          font-family: FontAwesome;
+          background-color: rgba(255, 255, 255, 0.55);
+          color: #000000;
+          border-radius: 0;
+          width: 200px;
+          height: 50px;
+          display: block;
+          left: 0px;
+          bottom: 0px;
+          text-align: center;
+          font-size: 25px;
+          padding-top: 11px;
+          line-height: 30px;
+        }
       }
 
       .img-user-avatar {
@@ -516,6 +554,10 @@ html, body {
   .modal-dialog {
     margin-top: 150px;
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 992px) {

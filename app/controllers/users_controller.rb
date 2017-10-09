@@ -5,6 +5,10 @@ class UsersController < Users::AccessController
     redirect_to users_dashboard_index_path unless @user
   end
 
+  def update
+    
+  end
+
   private
 
   def set_user
