@@ -18,7 +18,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, path: "upload_avatar", as: "upload_avatar", only: :update
+  # resources :users, path: "upload_avatar", as: "upload_avatar", only: :update
+
+  patch 'upload_avatar/:id', to: 'users#upload_avatar', as: "upload_avatar"
+  put 'upload_avatar/:id', to: 'users#upload_avatar'
 
   get ':username', to: 'users#show', as: :user
   
