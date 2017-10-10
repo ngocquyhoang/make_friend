@@ -12,17 +12,15 @@ class UsersController < Users::AccessController
 
   def upload_avatar
     if @user == current_user
-      # byebug
-      # respond_to do |format|
-        if @user.update(user_avatar_params)
-          respond_to :js
-          # format.html { render(:text => "not implemented") }
-        else
-          # format.js
-          # format.html { render(:text => "not implemented") }
+      if @user.update(user_avatar_params)
+        respond_to do |format|
+          format.js {}
         end
-        # format.js
-      # end
+      else
+        respond_to do |format|
+          format.js {}
+        end
+      end
     end
   end
 

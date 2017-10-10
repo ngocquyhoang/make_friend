@@ -141,7 +141,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= form_for(@user, as: @user, url: upload_avatar_path(@user), :format => :js, :remote => true, authenticity_token: true, html: { method: :put, :multipart => true }) do |f| %>
+        <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: { method: :put, :multipart => true }) do |f| %>
           <div class="modal-body">
             <div class="field">
               <%= f.file_field :avatar %>
