@@ -1,7 +1,7 @@
 <div class="user-main-wrap">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-sm-12">
+      <div class="col-lg-4 col-md-12">
         <div class="user-profile">
           <% if @user == current_user %>
             <%= link_to edit_user_registration_path, class: "link-edit-user-information no-outline" do %>
@@ -124,8 +124,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8 col-sm-12">
-        <div class="user-content-box"></div>
+      <div class="col-lg-8 col-md-12">
+        <div class="user-content-box">
+          
+        </div>
       </div>
     </div>
   </div>
@@ -141,7 +143,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: { method: :put, :multipart => true }) do |f| %>
+        <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
           <div class="modal-body">
             <div class="field">
               <%= f.file_field :avatar %>

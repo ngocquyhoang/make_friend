@@ -437,6 +437,11 @@ html, body {
         display: inline-block;
         position: relative;
 
+        img {
+          border-radius: 50%;
+          max-width: 100%;
+        }
+
         &:after {
           position: absolute;
           content: "\f083";

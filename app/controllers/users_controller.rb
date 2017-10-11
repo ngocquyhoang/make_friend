@@ -7,7 +7,6 @@ class UsersController < Users::AccessController
   end
 
   def update
-    
   end
 
   def upload_avatar

@@ -1,8 +1,7 @@
 module ApplicationHelper
   def avatar_for user
     if user.avatar?
-      email_encode = Digest::MD5.new.update( user.email.to_s.strip.downcase ).hexdigest
-      "<img src=\"http://www.gravatar.com/avatar/#{ email_encode }?s=350\" class=\"img-user-avatar\">".html_safe
+      cl_image_tag(@user.avatar.full_public_id, :transformation=>[{:width=>400, :height=>400, :gravity=>"auto", :radius=>"max", :crop=>"crop"}, {:width=>200, :crop=>"scale"}])
     else
       if user.gender == "male"
         image_tag "user-avatar-male.png", class: "img-user-avatar"
