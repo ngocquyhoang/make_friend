@@ -18,6 +18,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'less-rails-semantic_ui'
+gem 'autoprefixer-rails'
+gem 'therubyracer'
 
 gem 'capistrano-rails', group: :development
 
