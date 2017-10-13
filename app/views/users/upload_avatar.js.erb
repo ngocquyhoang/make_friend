@@ -1,1 +1,10 @@
-console.log("Ngon");
+<% if remotipart_submitted? %>
+  $('body').removeClass('over-flow-open');
+  $('#userAvatarBox').html('<%= j avatar_for @user %>');
+  $('#editUserAvatarModal #user_avatar').val('');
+  $('.over-loader').hide();
+<% else %>
+  $('body').removeClass('over-flow-open');
+  $('#editUserAvatarModal @user_avatar').val('');
+  $('.over-loader').hide();
+<% end %>

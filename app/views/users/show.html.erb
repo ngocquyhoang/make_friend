@@ -10,7 +10,7 @@
           <% end %>
           <div class="user-avatar">
             <% if @user == current_user %>
-              <a href="#" data-toggle="modal" data-target="#editUserAvatarModal" class="edit-user-avatar no-outline">
+              <a href="#" id="userAvatarBox" data-toggle="modal" data-target="#editUserAvatarModal" class="edit-user-avatar no-outline">
                 <%= avatar_for @user %>
               </a>
             <% else %>
@@ -151,7 +151,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary no-outline cursor-pointer">
+            <button type="submit" id="formUploadButton" class="btn btn-primary no-outline cursor-pointer">
               Upload 
               <i class="fa fa-cloud-upload" aria-hidden="true"></i>
             </button>
@@ -161,3 +161,11 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('#formUploadButton').click(function(event) {
+    $('#editUserAvatarModal').modal('hide');
+    $('.over-loader').show();
+    $('body').addClass('over-flow-open');
+  });
+</script>

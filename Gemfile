@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'remotipart', '~> 1.3.1'
 
 gem 'capistrano-rails', group: :development
 

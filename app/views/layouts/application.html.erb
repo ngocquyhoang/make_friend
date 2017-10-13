@@ -17,8 +17,17 @@
 
     <%= yield %>
 
+    <div class="pre-loader"></div>
+    <div class="over-loader"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      $(window).load(function() {
+        $(".pre-loader").fadeOut(500);
+      });
+    </script>
 
     <% unless flash.empty? %>
       <script type="text/javascript">
