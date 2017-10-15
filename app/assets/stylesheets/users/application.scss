@@ -1,9 +1,10 @@
 /* Self Script */
 @import 'dashboard';
+$import-google-fonts: false;
+@import 'semantic-ui';
 @import '../pnotify.min';
 @import '../animate';
 @import '../pnotify-style';
-@import 'semantic_ui/semantic_ui';
 
 /* Google Font */
 @import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura|Ribeye+Marrow:400,700');
@@ -90,6 +91,7 @@ html, body {
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: 'Ribeye Marrow', cursive;
+    font-weight: 400;
     font-size: 30px;
     line-height: 60px;
     color: #ffffff
@@ -130,15 +132,20 @@ html, body {
 
   .footer-logo-text {
     font-family: 'Ribeye Marrow', cursive;
+    font-weight: 400;
 
     .stream-text {
       font-size: 38px;
-      line-height: 40px
+      line-height: 40px;
+      font-family: 'Ribeye Marrow', cursive;
+      font-weight: 400;
     }
 
     .sub-text {
       font-size: 26px;
-      line-height: 28px
+      line-height: 28px;
+      font-family: 'Ribeye Marrow', cursive;
+      font-weight: 400;
     }
   }
 

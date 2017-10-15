@@ -19,9 +19,7 @@ gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'remotipart', '~> 1.3.1'
-gem 'less-rails-semantic_ui'
-gem 'autoprefixer-rails'
-gem 'therubyracer'
+gem 'semantic-ui-sass'
 
 gem 'capistrano-rails', group: :development
 
