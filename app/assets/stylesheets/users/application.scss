@@ -1,11 +1,9 @@
 /* Self Script */
 @import 'dashboard';
-$import-google-fonts: false;
-@import 'semantic-ui';
 @import '../pnotify.min';
 @import '../animate';
 @import '../pnotify-style';
-@import 'semantic_ui/semantic_ui';
+@import 'semantic-ui';
 
 /* Google Font */
 @import url('https://fonts.googleapis.com/css?family=Bungee+Inline|Jura|Ribeye+Marrow:400,700');
@@ -123,8 +121,8 @@ html, body {
 }
 
 .main-content-fixed {
-  margin-top: 70px;
-  min-height: calc(100vh - 338px)
+  padding-top: 70px;
+  min-height: calc(100vh - 265px)
 }
 
 #footer {
@@ -140,6 +138,8 @@ html, body {
       line-height: 40px;
       font-family: 'Ribeye Marrow', cursive;
       font-weight: 400;
+      margin-bottom: 8px;
+      margin-top: 0px;
     }
 
     .sub-text {
@@ -147,6 +147,8 @@ html, body {
       line-height: 28px;
       font-family: 'Ribeye Marrow', cursive;
       font-weight: 400;
+      margin-bottom: 8px;
+      margin-top: 0px;
     }
   }
 
@@ -238,6 +240,8 @@ html, body {
 }
 
 .user-screen {
+  font-family: 'Jura', sans-serif;
+
   #parallaxBackground {
     background-image: url(asset-path('bg-user-screen.jpg'));
     background-repeat: no-repeat;
@@ -285,6 +289,7 @@ html, body {
     font-size: 45px;
     line-height: 50px;
     margin-bottom: 0px;
+    font-weight: 400;
   }
 
   .back-to-home-button {
@@ -322,6 +327,8 @@ html, body {
       background-color: transparent;
       border: 1px solid #ffffff;
       color: #ffffff;
+      font-family: 'Jura', sans-serif;
+      font-size: 20px;
 
       &::placeholder {
         color: #ffffff;
@@ -349,6 +356,9 @@ html, body {
     .btn {
       text-transform: uppercase;
       cursor: pointer;
+      font-size: 20px;
+      font-family: 'Jura', sans-serif;
+      font-weight: 400;
 
       &:hover {
         color: #000000;
@@ -363,6 +373,9 @@ html, body {
   .btn {
     text-transform: uppercase;
     cursor: pointer;
+    font-size: 20px;
+    font-family: 'Jura', sans-serif;
+    font-weight: 400;
 
     &:hover {
       color: #000000;
@@ -434,8 +447,13 @@ html, body {
 }
 
 #troubleModal {
+  font-size: 16px;
+
   .modal-title {
     text-transform: uppercase;
+    font-family: 'Jura', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
   }
 
   .modal-dialog {
@@ -448,6 +466,9 @@ html, body {
 .user-main-wrap {
   padding-top: 20px;
   padding-bottom: 20px;
+  font-family: 'Jura', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
 
   .user-profile {
     padding: 12px;
@@ -574,6 +595,8 @@ html, body {
           font-size: 20px;
           line-height: 22px;
           color: #ffffff;
+          font-family: 'Jura', sans-serif;
+          font-weight: 400;
 
           .fa {
             margin-left: 10px;
@@ -592,6 +615,47 @@ html, body {
           margin-top: 30px;
         }
       }
+    }
+  }
+
+  .screen-header {
+    text-align: center;
+
+    .screen-title {
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      margin-top: 0px;
+      font-size: 45px;
+      line-height: 50px;
+      font-weight: 400;
+      font-family: 'Bungee Inline', cursive;
+      color: rgba(0, 0, 0, 0.75);
+    }
+  }
+
+  .screen-body {
+    font-family: 'Jura', sans-serif;
+    font-size: 18px;
+    text-align: center;
+
+    .screen-note {
+      font-family: 'Jura', sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+      margin-top: 0px;
+      margin-bottom: 25px;
+
+      .note-email {
+        color: #007bff;
+      }
+    }
+
+    .btn {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      font-family: 'Jura', sans-serif;
     }
   }
 }
