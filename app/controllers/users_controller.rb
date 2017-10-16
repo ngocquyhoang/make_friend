@@ -11,12 +11,11 @@ class UsersController < Users::AccessController
 
   def upload_avatar
     if @user == current_user
-      if @user.update(user_avatar_params)
-        respond_to do |format|
+      respond_to do |format|
+        if @user.update(user_avatar_params)
+          @user.reload
           format.js {}
-        end
-      else
-        respond_to do |format|
+        else
           format.js {}
         end
       end

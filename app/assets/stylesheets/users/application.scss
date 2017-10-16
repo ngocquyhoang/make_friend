@@ -1,5 +1,7 @@
 /* Self Script */
 @import 'dashboard';
+$import-google-fonts: false;
+@import 'semantic-ui';
 @import '../pnotify.min';
 @import '../animate';
 @import '../pnotify-style';
@@ -41,6 +43,42 @@ html, body {
   height: 100vh;
 }
 
+// Pre loader
+
+.pre-loader{
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: asset-url('pre-loader.gif');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+}
+
+// Over loader
+
+.over-loader{
+  position: fixed;
+  display: none;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: asset-url('over-loader.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.over-flow-open {
+  overflow: hidden;
+  padding-right: 15px;
+}
+
 #userMainNav {
   background-color: #C63D0F;
   padding: 0px;
@@ -54,6 +92,7 @@ html, body {
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: 'Ribeye Marrow', cursive;
+    font-weight: 400;
     font-size: 30px;
     line-height: 60px;
     color: #ffffff
@@ -94,15 +133,20 @@ html, body {
 
   .footer-logo-text {
     font-family: 'Ribeye Marrow', cursive;
+    font-weight: 400;
 
     .stream-text {
       font-size: 38px;
-      line-height: 40px
+      line-height: 40px;
+      font-family: 'Ribeye Marrow', cursive;
+      font-weight: 400;
     }
 
     .sub-text {
       font-size: 26px;
-      line-height: 28px
+      line-height: 28px;
+      font-family: 'Ribeye Marrow', cursive;
+      font-weight: 400;
     }
   }
 
