@@ -674,11 +674,49 @@ html, body {
       line-height: 20px;
     }
 
-    #edit_user_submit {
-      margin-top: 30px;
-      margin-bottom: 0px;
+    .submit-group {
+
+      .btn {
+        margin-top: 30px;
+        margin-bottom: 0px;
+      }
+    }
+
+    .invalid-feedback {
+      font-size: 16px;
+
+      &.text-black {
+        color: rgba(0, 0, 0, 0.87) !important;
+        display: block !important;
+      }
     }
   }
+}
+
+#deleteAccountModal {
+  .modal-dialog {
+    margin-top: 150px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    font-family: 'Jura', sans-serif;
+    line-height: 22px;
+    font-weight: 400;
+  }
+
+  .btn {
+    font-size: 18px;
+    font-family: 'Jura', sans-serif;
+    line-height: 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  .button_to {
+    display: inline-block;
+  }    
 }
 
 #editUserAvatarModal {

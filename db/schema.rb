@@ -40,7 +40,9 @@ ActiveRecord::Schema.define(version: 20170921102555) do
     t.text "hobby"
     t.text "dislike"
     t.datetime "dob"
-    t.text "address"
+    t.text "address_commune"
+    t.text "address_district"
+    t.text "address_province"
     t.text "high_school"
     t.text "univesity"
     t.boolean "is_verified", default: false

@@ -35,14 +35,14 @@
               <% if @user.dob? %>
                 <li class="infor-line text-center"><b><%= @user.dob.strftime("%Y %B %d") %> - <%= DateTime.now.year - @user.dob.year %> years old </b></li>
               <% end %>
-              <% if @user.address? %>
+              <% if @user.address_commune? || @user.address_district? || @user.address_province? %>
                 <li class="infor-line">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
                       Address:
                     </div>
                     <div class="table-child ver-mid">
-                      <%= @user.address %>
+                      <%#= @user.address_commune %>
                     </div>
                   </div>
                 </li>
