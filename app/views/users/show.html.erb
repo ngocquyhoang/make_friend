@@ -4,7 +4,7 @@
       <div class="col-lg-4 col-md-12">
         <div class="user-profile">
           <% if @user == current_user %>
-            <%= link_to edit_user_registration_path, class: "link-edit-user-information no-outline" do %>
+            <%= link_to "#", class: "link-edit-user-information no-outline", data: { toggle: 'modal', target: '#editUserAvatarModal' } do %>
               <i class="fa fa-pencil" aria-hidden="true"></i>
             <% end %>
           <% end %>
@@ -33,7 +33,7 @@
                 </li>
               <% end %>
               <% if @user.dob? %>
-                <li class="infor-line text-center"><b><%= @user.dob.strftime("%Y %B %d") %> - <%= DateTime.now.year - @user.dob.year %> years old </b></li>
+                <li class="infor-line text-center"><b><%= @user.dob.strftime("%Y %B %d") %> - <%= get_age @user.dob %> years old </b></li>
               <% end %>
               <% if @user.address_commune? || @user.address_district? || @user.address_province? %>
                 <li class="infor-line">
@@ -137,16 +137,12 @@
   <div class="modal fade" id="editUserAvatarModal" tabindex="-1" role="dialog" aria-labelledby="editUserAvatarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editUserAvatarLabel">Upload avatar</h5>
-          <button type="button" class="close no-outline cursor-pointer" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
           <div class="modal-body">
             <div class="field">
-              <%= f.file_field :avatar %>
+              <label id="user_avatar_label">
+                <%= f.file_field :avatar %>
+              </label>
             </div>
           </div>
           <div class="modal-footer">
