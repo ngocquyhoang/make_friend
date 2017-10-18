@@ -13,7 +13,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.text :hobby
       t.text :dislike
       t.datetime :dob
-      t.text :address
+      t.text :address_commune
+      t.text :address_district
+      t.text :address_province
       t.text :high_school
       t.text :univesity
       t.boolean :is_verified,           default: false

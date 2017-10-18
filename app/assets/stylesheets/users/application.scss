@@ -658,6 +658,27 @@ html, body {
       font-family: 'Jura', sans-serif;
     }
   }
+
+  .edit_user {
+    margin-bottom: 20px;
+    
+    .form-control {
+      font-family: 'Jura', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .table-panel > .table-child:first-child {
+      width: 250px;
+      font-size: 18px;
+      line-height: 20px;
+    }
+
+    #edit_user_submit {
+      margin-top: 30px;
+      margin-bottom: 0px;
+    }
+  }
 }
 
 #editUserAvatarModal {
