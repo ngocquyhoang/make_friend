@@ -4,7 +4,7 @@
       <div class="col-lg-4 col-md-12">
         <div class="user-profile">
           <% if @user == current_user %>
-            <%= link_to "#", class: "link-edit-user-information no-outline", data: { toggle: 'modal', target: '#editUserAvatarModal' } do %>
+            <%= link_to "#", class: "link-edit-user-information no-outline", data: { toggle: 'modal', target: '#editUserInformationModal' } do %>
               <i class="fa fa-pencil" aria-hidden="true"></i>
             <% end %>
           <% end %>
@@ -137,17 +137,56 @@
   <div class="modal fade" id="editUserAvatarModal" tabindex="-1" role="dialog" aria-labelledby="editUserAvatarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserAvatarLabel">Upload Avatar</h5>
+          <button type="button" class="close cursor-pointer no-outline" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
           <div class="modal-body">
-            <div class="field">
-              <label id="user_avatar_label">
+            <div class="text-center">
+              <label id="user_avatar_label" class="cursor-pointer no-outline">
+                <div id="preview_image"></div>
+                <img src="<%= asset_url 'add-icon.png' %>" class="js--add-image add-image-default" >
                 <%= f.file_field :avatar %>
               </label>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
-            <button type="submit" id="formUploadButton" class="btn btn-primary no-outline cursor-pointer">
+            <button type="button" class="btn btn-secondary btn-lg no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="formUploadButton" class="btn btn-lg btn-primary no-outline cursor-pointer">
+              Upload 
+              <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editUserInformationModal" tabindex="-1" role="dialog" aria-labelledby="editUserInformationLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserInformationLabel">Edit User Information</h5>
+          <button type="button" class="close cursor-pointer no-outline" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
+          <div class="modal-body">
+            <div class="text-center">
+              <label id="user_avatar_label" class="cursor-pointer no-outline">
+                <div id="preview_image"></div>
+                <img src="<%= asset_url 'add-icon.png' %>" class="js--add-image add-image-default" >
+                <%= f.file_field :avatar %>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-lg no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
+            <button type="submit" id="formUploadButton" class="btn btn-lg btn-primary no-outline cursor-pointer">
               Upload 
               <i class="fa fa-cloud-upload" aria-hidden="true"></i>
             </button>
@@ -164,4 +203,26 @@
     $('.over-loader').show();
     $('body').addClass('over-flow-open');
   });
+
+  $("#user_avatar").on('change', function () {
+    if (typeof (FileReader) != "undefined") {
+      var image_holder = $("#preview_image");
+      image_holder.empty();
+      $('.js--add-image').hide();
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          $("<img />", {
+              "src": e.target.result,
+              "class": "js--add-image"
+          }).appendTo(image_holder);
+
+      }
+      image_holder.show();
+      reader.readAsDataURL($(this)[0].files[0]);
+    } else {
+        console.log("This browser does not support FileReader.");
+    }
+  });
+
 </script>

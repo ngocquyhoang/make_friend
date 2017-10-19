@@ -722,6 +722,9 @@ html, body {
 #editUserAvatarModal {
   .modal-title {
     text-transform: uppercase;
+    font-size: 20px;
+    font-family: 'Jura', sans-serif;
+    line-height: 22px;
   }
 
   .modal-dialog {
@@ -730,6 +733,23 @@ html, body {
 
   #user_avatar {
     display: none;
+  }
+
+  #user_avatar_label {
+    text-align: center;
+
+    img {
+      height: 200px;
+    }
+  }
+
+  .modal-footer {
+    .btn {
+      font-size: 18px;
+      line-height: 20px;
+      font-family: 'Jura', sans-serif;
+      text-transform: uppercase;
+    }
   }
 }
 

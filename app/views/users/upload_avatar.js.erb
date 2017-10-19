@@ -2,9 +2,13 @@
   $('body').removeClass('over-flow-open');
   $('#userAvatarBox').html('<%= j avatar_for @user %>');
   $('#editUserAvatarModal #user_avatar').val('');
+  $("#preview_image").empty();
+  $('.js--add-image').show();
   $('.over-loader').hide();
 <% else %>
   $('body').removeClass('over-flow-open');
   $('#editUserAvatarModal @user_avatar').val('');
+  $("#preview_image").empty();
+  $('.js--add-image').show();
   $('.over-loader').hide();
 <% end %>
