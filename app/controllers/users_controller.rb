@@ -4,6 +4,19 @@ class UsersController < Users::AccessController
 
   def show
     redirect_to users_dashboard_index_path unless @user
+
+    if @user == current_user
+      @jobs = []
+      File.readlines('databases/job_list.txt').map do |line|
+        @jobs << line.split("\r\n")[0]
+      end
+
+      @like_dislike_list = []
+      File.readlines('databases/like_disklike_list.txt').map do |line|
+        @like_dislike_list << line.split("\r\n")[0]
+      end
+      @like_dislike_list = @like_dislike_list.uniq
+    end
   end
 
   def upload_avatar

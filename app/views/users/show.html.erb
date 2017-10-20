@@ -206,41 +206,14 @@
                   Gender
                 </div>
                 <div class="table-child ver-mid">
-                  <select name="user[gender]" id="user_gender" class="ui dropdown js--select-gender">
-                    <option>Select gender</option>
+                  <select name="user[gender]" id="user_gender" class="ui dropdown js--select-gender semantic-ui-form">
+                    <option>Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
-
-                  <div class="ui floating dropdown labeled search icon button">
-  <i class="world icon"></i>
-  <span class="text">Select Language</span>
-  <div class="menu">
-    <div class="item">Arabic</div>
-    <div class="item">Chinese</div>
-    <div class="item">Danish</div>
-    <div class="item">Dutch</div>
-    <div class="item">English</div>
-    <div class="item">French</div>
-    <div class="item">German</div>
-    <div class="item">Greek</div>
-    <div class="item">Hungarian</div>
-    <div class="item">Italian</div>
-    <div class="item">Japanese</div>
-    <div class="item">Korean</div>
-    <div class="item">Lithuanian</div>
-    <div class="item">Persian</div>
-    <div class="item">Polish</div>
-    <div class="item">Portuguese</div>
-    <div class="item">Russian</div>
-    <div class="item">Spanish</div>
-    <div class="item">Swedish</div>
-    <div class="item">Turkish</div>
-    <div class="item">Vietnamese</div>
-  </div>
-</div>
-
-                  <div class="invalid-feedback"></div>
+                  <script type="text/javascript">
+                    $('.js--select-gender').dropdown();
+                  </script>
                 </div>
               </div>
             </div>
@@ -251,8 +224,17 @@
                   Job
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :job, autofocus: true, class: 'form-control form-control-lg', placeholder: "Job" %>
-                  <div class="invalid-feedback"></div>
+                  <select class="ui fluid search dropdown js--select-job semantic-ui-form form-multipe" multiple name="user[job]" id="user_job">
+                    <option value="">Select Job</option>
+                    <% @jobs.each do |job| %>
+                      <option value="<%= job %>"><%= job %></option>
+                    <% end %>
+                  </select>
+                  <script type="text/javascript">
+                    $('.js--select-job').dropdown({
+                      maxSelections: 3
+                    });
+                  </script>
                 </div>
               </div>
             </div>
@@ -263,8 +245,17 @@
                   Like
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :hobby, autofocus: true, class: 'form-control form-control-lg', placeholder: "Like" %>
-                  <div class="invalid-feedback"></div>
+                  <select class="ui fluid search dropdown js--select-hobby semantic-ui-form form-multipe" multiple name="user[hobby]" id="user_hobby">
+                    <option value="">Select Hobbies</option>
+                    <% @like_dislike_list.each do |like_dislike| %>
+                      <option value="<%= like_dislike %>"><%= like_dislike %></option>
+                    <% end %>
+                  </select>
+                  <script type="text/javascript">
+                    $('.js--select-hobby').dropdown({
+                      maxSelections: 5
+                    });
+                  </script>
                 </div>
               </div>
             </div>
@@ -275,8 +266,17 @@
                   Dislike
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :dislike, autofocus: true, class: 'form-control form-control-lg', placeholder: "Dislike" %>
-                  <div class="invalid-feedback"></div>
+                  <select class="ui fluid search dropdown js--select-dislike semantic-ui-form form-multipe" multiple name="user[dislike]" id="user_dislike">
+                    <option value="">Select Disklike</option>
+                    <% @like_dislike_list.each do |like_dislike| %>
+                      <option value="<%= like_dislike %>"><%= like_dislike %></option>
+                    <% end %>
+                  </select>
+                  <script type="text/javascript">
+                    $('.js--select-dislike').dropdown({
+                      maxSelections: 5
+                    });
+                  </script>
                 </div>
               </div>
             </div>
@@ -372,9 +372,5 @@
     startDate: '-100y',
     endDate: 'd',
     todayHighlight: true,
-  });
-
-  jQuery(document).ready(function($) {
-    $('.dropdown').dropdown();
   });
 </script>

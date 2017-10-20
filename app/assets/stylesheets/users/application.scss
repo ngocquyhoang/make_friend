@@ -768,7 +768,7 @@ html, body {
 
   .edit_user {
     .form-label {
-      width: 180px;
+      width: 170px;
       font-size: 17px;
       line-height: 20px;
     }
@@ -780,6 +780,59 @@ html, body {
 
     #user_username {
       text-transform: lowercase;
+    }
+  }
+
+  .semantic-ui-form {
+    font-size: 18px;
+    line-height: 27px;
+    border-radius: 4px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    min-height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #777777;
+
+    .text {
+      color: #777777;
+    }
+
+    &:hover {
+      border: 1px solid rgba(0, 0, 0, 0.15)
+    }
+
+    &.selection.active {
+      border-color: #80bdff;
+    }
+
+    &.selection.active.dropdown .menu {
+      border-color: #80bdff;
+    }
+
+    &.dropdown .menu .selected.item {
+      background-color: rgba(0, 0, 0, 0.06);
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.85) !important;
+    }
+
+    &.selection.dropdown .menu > .item {
+      font-size: 18px;
+      line-height: 27px;
+      padding-top: 7px !important;
+      padding-bottom: 7px !important;
+      color: #777777;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    & .dropdown.icon {
+      padding: 12px;
+    }
+
+    &.form-multipe .dropdown.icon {
+      padding: 17px 12px;
     }
   }
 }
