@@ -766,10 +766,6 @@ html, body {
     padding-right: 30px;
   }
 
-  .modal-dialog {
-    margin-top: 150px;
-  }
-
   .edit_user {
     .form-label {
       width: 180px;
@@ -786,6 +782,16 @@ html, body {
       text-transform: lowercase;
     }
   }
+}
+
+.datepicker {
+  font-size: 16px;
+}
+
+.datepicker td, 
+.datepicker th {
+  width: 34px;
+  height: 25px;
 }
 
 .cursor-pointer {

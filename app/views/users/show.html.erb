@@ -206,7 +206,40 @@
                   Gender
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :gender, autofocus: true, class: 'form-control form-control-lg', placeholder: "Gender" %>
+                  <select name="user[gender]" id="user_gender" class="ui dropdown js--select-gender">
+                    <option>Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+
+                  <div class="ui floating dropdown labeled search icon button">
+  <i class="world icon"></i>
+  <span class="text">Select Language</span>
+  <div class="menu">
+    <div class="item">Arabic</div>
+    <div class="item">Chinese</div>
+    <div class="item">Danish</div>
+    <div class="item">Dutch</div>
+    <div class="item">English</div>
+    <div class="item">French</div>
+    <div class="item">German</div>
+    <div class="item">Greek</div>
+    <div class="item">Hungarian</div>
+    <div class="item">Italian</div>
+    <div class="item">Japanese</div>
+    <div class="item">Korean</div>
+    <div class="item">Lithuanian</div>
+    <div class="item">Persian</div>
+    <div class="item">Polish</div>
+    <div class="item">Portuguese</div>
+    <div class="item">Russian</div>
+    <div class="item">Spanish</div>
+    <div class="item">Swedish</div>
+    <div class="item">Turkish</div>
+    <div class="item">Vietnamese</div>
+  </div>
+</div>
+
                   <div class="invalid-feedback"></div>
                 </div>
               </div>
@@ -254,7 +287,7 @@
                   Date of birth
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :dob, autofocus: true, class: 'form-control form-control-lg', placeholder: "Date of birth" %>
+                  <%= f.text_field :dob, autofocus: true, class: 'form-control form-control-lg', placeholder: "Date of birth", :value => ( @user.dob.strftime("%d-%m-%Y") unless @user.dob.nil? ) %>
                   <div class="invalid-feedback"></div>
                 </div>
               </div>
@@ -334,4 +367,14 @@
     }
   });
 
+  $('#user_dob').datepicker({
+    format: 'dd-mm-yyyy',
+    startDate: '-100y',
+    endDate: 'd',
+    todayHighlight: true,
+  });
+
+  jQuery(document).ready(function($) {
+    $('.dropdown').dropdown();
+  });
 </script>
