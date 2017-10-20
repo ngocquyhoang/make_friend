@@ -753,6 +753,41 @@ html, body {
   }
 }
 
+#editUserInformationModal {
+  .modal-title {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: 'Jura', sans-serif;
+    line-height: 22px;
+  }
+
+  .modal-body {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .modal-dialog {
+    margin-top: 150px;
+  }
+
+  .edit_user {
+    .form-label {
+      width: 180px;
+      font-size: 17px;
+      line-height: 20px;
+    }
+
+    .form-control {
+      font-size: 18px;
+      font-family: 'Jura', sans-serif;
+    }
+
+    #user_username {
+      text-transform: lowercase;
+    }
+  }
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

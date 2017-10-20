@@ -6,18 +6,20 @@ class UsersController < Users::AccessController
     redirect_to users_dashboard_index_path unless @user
   end
 
-  def update
-  end
-
   def upload_avatar
     if @user == current_user
       respond_to do |format|
-        if @user.update(user_avatar_params)
-          @user.reload
-          format.js {}
-        else
-          format.js {}
-        end
+        @user.reload if @user.update(user_avatar_params)
+        format.js {}
+      end
+    end
+  end
+
+  def update_information
+    if @user == current_user
+      respond_to do |format|
+        @user.reload if @user.update(user_information_params)
+        format.js {}
       end
     end
   end
@@ -33,7 +35,7 @@ class UsersController < Users::AccessController
     @user = User.find params[:id]
   end
 
-  def user_params
+  def user_information_params
     params.require(:user).permit(:username, :name)
   end
 

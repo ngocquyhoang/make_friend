@@ -166,7 +166,7 @@
   </div>
 
   <div class="modal fade" id="editUserInformationModal" tabindex="-1" role="dialog" aria-labelledby="editUserInformationLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="editUserInformationLabel">Edit User Information</h5>
@@ -174,22 +174,131 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= form_for(@user, url: upload_avatar_path(@user), :remote => true, authenticity_token: true, html: {:multipart => true }) do |f| %>
+        <%= form_for(@user, url: update_information_path(@user), :remote => true, authenticity_token: true) do |f| %>
           <div class="modal-body">
-            <div class="text-center">
-              <label id="user_avatar_label" class="cursor-pointer no-outline">
-                <div id="preview_image"></div>
-                <img src="<%= asset_url 'add-icon.png' %>" class="js--add-image add-image-default" >
-                <%= f.file_field :avatar %>
-              </label>
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Username
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :username, autofocus: true, class: 'form-control form-control-lg', placeholder: "Username" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
             </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Full Name
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :name, autofocus: true, class: 'form-control form-control-lg', placeholder: "Full Name" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Gender
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :gender, autofocus: true, class: 'form-control form-control-lg', placeholder: "Gender" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Job
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :job, autofocus: true, class: 'form-control form-control-lg', placeholder: "Job" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Like
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :hobby, autofocus: true, class: 'form-control form-control-lg', placeholder: "Like" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Dislike
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :dislike, autofocus: true, class: 'form-control form-control-lg', placeholder: "Dislike" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Date of birth
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :dob, autofocus: true, class: 'form-control form-control-lg', placeholder: "Date of birth" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  Address
+                </div>
+                <div class="table-child ver-mid">
+                  <%#= f.text_field :dob, autofocus: true, class: 'form-control form-control-lg', placeholder: "Date of birth" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  High school
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :high_school, autofocus: true, class: 'form-control form-control-lg', placeholder: "High school" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="table-panel">
+                <div class="table-child ver-mid form-label">
+                  University
+                </div>
+                <div class="table-child ver-mid">
+                  <%= f.text_field :univesity, autofocus: true, class: 'form-control form-control-lg', placeholder: "University" %>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-lg no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
-            <button type="submit" id="formUploadButton" class="btn btn-lg btn-primary no-outline cursor-pointer">
-              Upload 
-              <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-            </button>
+            
           </div>
         <% end %>
       </div>
