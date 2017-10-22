@@ -9,15 +9,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :avatar
       t.string :gender
+      t.string :address_commune
+      t.string :address_district
+      t.string :address_province
+      t.string :highschool_province
+      t.string :highschool_district
       t.text :job
       t.text :hobby
       t.text :dislike
-      t.datetime :dob
-      t.text :address_commune
-      t.text :address_district
-      t.text :address_province
       t.text :high_school
       t.text :univesity
+      t.datetime :dob
       t.boolean :is_verified,           default: false
 
       ## Recoverable

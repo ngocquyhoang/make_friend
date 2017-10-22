@@ -793,6 +793,10 @@ html, body {
     border: 1px solid rgba(0, 0, 0, 0.15);
     color: #777777;
 
+    &.width-100 {
+      width: 100%;
+    }
+
     .text {
       color: #777777;
     }
@@ -849,6 +853,10 @@ html, body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
 }
 
 @media screen and (max-width: 992px) {

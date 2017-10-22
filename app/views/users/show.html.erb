@@ -35,7 +35,7 @@
               <% if @user.dob? %>
                 <li class="infor-line text-center"><b><%= @user.dob.strftime("%Y %B %d") %> - <%= get_age @user.dob %> years old </b></li>
               <% end %>
-              <% if @user.address_commune? || @user.address_district? || @user.address_province? %>
+              <%# if @user.address_commune? || @user.address_district? || @user.address_province? %>
                 <li class="infor-line">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
@@ -46,67 +46,67 @@
                     </div>
                   </div>
                 </li>
-              <% end %>
-              <% if @user.job? %>
+              <%# end %>
+              <%# if @user.job? %>
                 <li class="infor-line">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
                       Job:
                     </div>
                     <div class="table-child ver-mid">
-                      <%= @user.job %>
+                      <%#= @user.job %>
                     </div>
                   </div>
                 </li>
-              <% end %>
-              <% if @user.hobby? %>
+              <%# end %>
+              <%# if @user.hobby? %>
                 <li class="infor-line">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
                       Hobby:
                     </div>
                     <div class="table-child ver-mid">
-                      <%= @user.hobby %>
+                      <%#= @user.hobby %>
                     </div>
                   </div>
                 </li>
-              <% end %>
-              <% if @user.dislike? %>
+              <%# end %>
+              <%# if @user.dislike? %>
                 <li class="infor-line">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
                       Dislike:
                     </div>
                     <div class="table-child ver-mid">
-                      <%= @user.dislike %>
+                      <%#= @user.dislike %>
                     </div>
                   </div>
                 </li>
-              <% end %>
-              <% if @user.high_school? %>
+              <%# end %>
+              <%# if @user.high_school? %>
                 <li class="infor-line">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
                       High school:
                     </div>
                     <div class="table-child ver-mid">
-                      <%= @user.high_school %>
+                      <%#= @user.high_school %>
                     </div>
                   </div>
                 </li>
-              <% end %>
-              <% if @user.univesity? %>
+              <%# end %>
+              <%# if @user.univesity? %>
                 <li class="infor-line infor-last-child">
                   <div class="table-panel">
                     <div class="table-child ver-mid infor-label">
                       University:
                     </div>
                     <div class="table-child ver-mid">
-                      <%= @user.univesity %>
+                      <%#= @user.univesity %>
                     </div>
                   </div>
                 </li>
-              <% end %>
+              <%# end %>
               <li>
                 <div class="verify-user-block">
                   <% if @user.is_verified? %>
@@ -206,11 +206,7 @@
                   Gender
                 </div>
                 <div class="table-child ver-mid">
-                  <select name="user[gender]" id="user_gender" class="ui dropdown js--select-gender semantic-ui-form">
-                    <option>Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
+                  <%= f.select :gender, [["Male", "male"], ["Female", "female"]], { include_blank: 'Select Gender' }, class: "ui dropdown js--select-gender semantic-ui-form" %>
                   <script type="text/javascript">
                     $('.js--select-gender').dropdown();
                   </script>
@@ -224,16 +220,17 @@
                   Job
                 </div>
                 <div class="table-child ver-mid">
-                  <select class="ui fluid search dropdown js--select-job semantic-ui-form form-multipe" multiple name="user[job]" id="user_job">
-                    <option value="">Select Job</option>
-                    <% @jobs.each do |job| %>
-                      <option value="<%= job %>"><%= job %></option>
-                    <% end %>
-                  </select>
+                  <%= f.select :job, @jobs, { :include_blank => "Select Job"}, { :multiple => true, :size => 3, :class => "ui fluid search dropdown js--select-job semantic-ui-form form-multipe" } %>
                   <script type="text/javascript">
                     $('.js--select-job').dropdown({
                       maxSelections: 3
                     });
+
+                    <% if @user.job? && @user.job.split("|").length != 0 %>
+                      <% @user.job.split("|").each do |job| %>
+                        $('.js--select-job').dropdown('set selected', "<%= job %>");
+                      <% end %>
+                    <% end %>
                   </script>
                 </div>
               </div>
@@ -245,16 +242,17 @@
                   Like
                 </div>
                 <div class="table-child ver-mid">
-                  <select class="ui fluid search dropdown js--select-hobby semantic-ui-form form-multipe" multiple name="user[hobby]" id="user_hobby">
-                    <option value="">Select Hobbies</option>
-                    <% @like_dislike_list.each do |like_dislike| %>
-                      <option value="<%= like_dislike %>"><%= like_dislike %></option>
-                    <% end %>
-                  </select>
+                  <%= f.select :hobby, @like_dislike_list, { :include_blank => "Select Hobbies"}, { :multiple => true, :size => 5, :class => "ui fluid search dropdown js--select-hobby semantic-ui-form form-multipe" } %>
                   <script type="text/javascript">
                     $('.js--select-hobby').dropdown({
                       maxSelections: 5
                     });
+
+                    <% if @user.hobby? && @user.hobby.split("|").length != 0  %>
+                      <% @user.hobby.split("|").each do |hobby| %>
+                        $('.js--select-hobby').dropdown('set selected', "<%= hobby %>");
+                      <% end %>
+                    <% end %>
                   </script>
                 </div>
               </div>
@@ -266,16 +264,17 @@
                   Dislike
                 </div>
                 <div class="table-child ver-mid">
-                  <select class="ui fluid search dropdown js--select-dislike semantic-ui-form form-multipe" multiple name="user[dislike]" id="user_dislike">
-                    <option value="">Select Disklike</option>
-                    <% @like_dislike_list.each do |like_dislike| %>
-                      <option value="<%= like_dislike %>"><%= like_dislike %></option>
-                    <% end %>
-                  </select>
+                  <%= f.select :dislike, @like_dislike_list, { :include_blank => "Select Disklike"}, { :multiple => true, :size => 5, :class => "ui fluid search dropdown js--select-dislike semantic-ui-form form-multipe" } %>
                   <script type="text/javascript">
                     $('.js--select-dislike').dropdown({
                       maxSelections: 5
                     });
+
+                    <% if @user.dislike? && @user.dislike.split("|").length != 0  %>
+                      <% @user.dislike.split("|").each do |dislike| %>
+                        $('.js--select-dislike').dropdown('set selected', "<%= dislike %>");
+                      <% end %>
+                    <% end %>
                   </script>
                 </div>
               </div>
@@ -299,8 +298,61 @@
                   Address
                 </div>
                 <div class="table-child ver-mid">
-                  <%#= f.text_field :dob, autofocus: true, class: 'form-control form-control-lg', placeholder: "Date of birth" %>
-                  <div class="invalid-feedback"></div>
+                  <div class="row margin-bottom-15">
+                    <div class="col">
+                      <%= f.select :address_province, @address_province_list.collect { |ap| [ ap['Ten_Tinh_Thanh_Pho'], ap['Ten_Tinh_Thanh_Pho'] ] }, { include_blank: 'Select your Province' }, class: "ui search dropdown js--select-address-province semantic-ui-form width-100" %>
+                    </div>
+                    <div class="col">
+                      <%= f.select :address_district, @distric_list_of_province.collect { |ap| [ ap['Ten_Quan_Huyen'], ap['Ten_Quan_Huyen'] ] }, { include_blank: 'Select your District' }, class: "ui search dropdown js--select-address-district semantic-ui-form width-100" %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <%= f.select :address_commune, @commune_list_of_province.collect { |ap| [ ap['Ten_Phuong_Xa'], ap['Ten_Phuong_Xa'] ] }, { include_blank: 'Select your Commune' }, class: "ui search dropdown js--select-address-commune semantic-ui-form width-100" %>
+                    </div>
+                  </div>
+                  
+                  <script type="text/javascript">
+                    $('.js--select-address-province').dropdown();
+                    $('.js--select-address-district').dropdown();
+                    $('.js--select-address-commune').dropdown();
+                  </script>
+
+                  <script type="text/javascript">
+                    $('#user_address_province').on('change', function() {
+                      $.ajax({
+                        url: '<%= get_district_ajax_path %>',
+                        data: { 'province' : this.value },
+                        type: 'post',
+                        success: function(result){
+                          $('#user_address_district').children('option:not(:first)').remove();
+                          $.each(result.distric_list, function(index, value) {
+                            $('#user_address_district')
+                              .append($("<option></option>")
+                              .attr("value",value.Ten_Quan_Huyen)
+                              .text(value.Ten_Quan_Huyen));
+                          });
+                        }}
+                      );
+                    })
+
+                    $('#user_address_district').on('change', function() {
+                      $.ajax({
+                        url: '<%= get_commune_ajax_path %>',
+                        data: { 'province' : $('#user_address_province').val(), 'district' : this.value },
+                        type: 'post',
+                        success: function(result){
+                          $('#user_address_commune').children('option:not(:first)').remove();
+                          $.each(result.commune_list, function(index, value) {
+                            $('#user_address_commune')
+                              .append($("<option></option>")
+                              .attr("value",value.Ten_Phuong_Xa)
+                              .text(value.Ten_Phuong_Xa));
+                          });
+                        }}
+                      );
+                    })
+                  </script>
                 </div>
               </div>
             </div>
@@ -311,8 +363,61 @@
                   High school
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :high_school, autofocus: true, class: 'form-control form-control-lg', placeholder: "High school" %>
-                  <div class="invalid-feedback"></div>
+                  <div class="row margin-bottom-15">
+                    <div class="col">
+                      <%= f.select :highschool_province, @address_highschool_province_list.collect { |ahp| [ ahp['Ten_Tinh_Thanh_Pho'], ahp['Ten_Tinh_Thanh_Pho'] ] }, { include_blank: 'Select school province' }, class: "ui search dropdown js--select-highschool-province semantic-ui-form width-100" %>
+                    </div>
+                    <div class="col">
+                      <%= f.select :highschool_district, @address_highschool_district_list.collect { |ahd| [ ahd['Ten_Quan_Huyen'], ahd['Ten_Quan_Huyen'] ] }, { include_blank: 'Select school district' }, class: "ui search dropdown js--select-highschool-district semantic-ui-form width-100" %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <%= f.select :high_school, @highschool_list.collect { |hc| [ "#{hc['Ten_Truong']} -- #{hc['Dia_Chi']}", hc['Ten_Truong'] ] }, { include_blank: 'Select your High School' }, class: "ui search dropdown js--select-highschool semantic-ui-form width-100" %>
+                    </div>
+                  </div>
+                  
+                  <script type="text/javascript">
+                    $('.js--select-highschool-province').dropdown();
+                    $('.js--select-highschool-district').dropdown();
+                    $('.js--select-highschool').dropdown();
+                  </script>
+
+                  <script type="text/javascript">
+                    $('#user_highschool_province').on('change', function() {
+                      $.ajax({
+                        url: '<%= get_highschool_district_ajax_path %>',
+                        data: { 'province' : this.value },
+                        type: 'post',
+                        success: function(result){
+                          $('#user_highschool_district').children('option:not(:first)').remove();
+                          $.each(result.distric_list, function(index, value) {
+                            $('#user_highschool_district')
+                              .append($("<option></option>")
+                              .attr("value",value.Ten_Quan_Huyen)
+                              .text(value.Ten_Quan_Huyen));
+                          });
+                        }}
+                      );
+                    })
+
+                    $('#user_highschool_district').on('change', function() {
+                      $.ajax({
+                        url: '<%= get_highschool_list_ajax_path %>',
+                        data: { 'province' : $('#user_highschool_province').val(), 'district' : this.value },
+                        type: 'post',
+                        success: function(result){
+                          $('#user_high_school').children('option:not(:first)').remove();
+                          $.each(result.school_list, function(index, value) {
+                            $('#user_high_school')
+                              .append($("<option></option>")
+                              .attr("value",value.Ten_Truong)
+                              .text(`${value.Ten_Truong} -- ${value.Dia_Chi}`));
+                          });
+                        }}
+                      );
+                    })
+                  </script>
                 </div>
               </div>
             </div>
@@ -324,14 +429,14 @@
                 </div>
                 <div class="table-child ver-mid">
                   <%= f.text_field :univesity, autofocus: true, class: 'form-control form-control-lg', placeholder: "University" %>
-                  <div class="invalid-feedback"></div>
                 </div>
               </div>
             </div>
 
           </div>
           <div class="modal-footer">
-            
+            <button type="button" class="btn btn-secondary btn-lg no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
+            <%= f.submit "Upload", class: "btn btn-lg btn-primary no-outline cursor-pointer" %>
           </div>
         <% end %>
       </div>

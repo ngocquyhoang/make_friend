@@ -18,11 +18,17 @@ Rails.application.routes.draw do
     end
   end
 
-  patch 'update_information/:id', to: 'users#update_information', as: "update_information"
+  patch 'update_information/:id', to: 'users#update_information', as: 'update_information'
   put 'update_information/:id', to: 'users#update_information'
 
-  patch 'upload_avatar/:id', to: 'users#upload_avatar', as: "upload_avatar"
+  patch 'upload_avatar/:id', to: 'users#upload_avatar', as: 'upload_avatar'
   put 'upload_avatar/:id', to: 'users#upload_avatar'
+
+  post 'get_district_ajax', to: 'users#get_district_ajax', as: 'get_district_ajax'
+  post 'get_commune_ajax', to: 'users#get_commune_ajax', as: 'get_commune_ajax'
+
+  post 'get_highschool_district_ajax', to: 'users#get_highschool_district_ajax', as: 'get_highschool_district_ajax'
+  post 'get_highschool_list_ajax', to: 'users#get_highschool_list_ajax', as: 'get_highschool_list_ajax'
 
   get ':username', to: 'users#show', as: :user
   
