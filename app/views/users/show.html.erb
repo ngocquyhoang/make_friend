@@ -93,7 +93,6 @@
                         data: { 'username' : this.value },
                         type: 'post',
                         success: function(result){
-                          console.log(result);
                           if (result.is_valid) {
                             $('#user_username').removeClass('is-invalid');
                             $('#user_username').addClass('is-valid');
