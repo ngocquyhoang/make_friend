@@ -6,7 +6,8 @@ class UsersController < Users::AccessController
     :get_district_ajax, 
     :get_commune_ajax, 
     :get_highschool_district_ajax, 
-    :get_highschool_list_ajax
+    :get_highschool_list_ajax,
+    :check_username_ajax
   ]
 
   def show
@@ -67,6 +68,15 @@ class UsersController < Users::AccessController
 
   def get_highschool_list_ajax
     render json: { 'school_list': get_school_list(params['province'], params['district']) }
+  end
+
+  def check_username_ajax
+    if params['username'] != current_user.username
+      is_valid = User.new(email: 'user@example.com', password: '123456789', password_confirmation: '123456789', username: params['username']).valid?
+      render json: { 'is_valid': is_valid }
+    else
+      render json: { 'is_valid': true }
+    end
   end
 
   private

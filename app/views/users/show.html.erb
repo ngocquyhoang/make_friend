@@ -81,8 +81,39 @@
                 </div>
                 <div class="table-child ver-mid">
                   <%= f.text_field :username, autofocus: true, class: 'form-control form-control-lg', placeholder: "Username" %>
-                  <div class="invalid-feedback"></div>
+                  <div id="user_username_error" class="invalid-feedback text-black">( Between 6 and 20 characters for a username is acceptable )</div>
                 </div>
+                <script type="text/javascript">
+                  $('#user_username').keyup( function () {
+                    if (this.value.length >= 6 && this.value.length <= 20) {
+                      $('#user_username').removeClass('is-invalid');
+                      $('#user_username_error').addClass('text-black');
+                      $.ajax({
+                        url: '<%= check_username_ajax_path %>',
+                        data: { 'username' : this.value },
+                        type: 'post',
+                        success: function(result){
+                          console.log(result);
+                          if (result.is_valid) {
+                            $('#user_username').removeClass('is-invalid');
+                            $('#user_username').addClass('is-valid');
+                            $('#user_username_error').text('( Between 6 and 20 characters for a username is acceptable )');
+                          }else {
+                            $('#user_username').removeClass('is-valid');
+                            $('#user_username').addClass('is-invalid');
+                            $('#user_username_error').removeClass('text-black');
+                            $('#user_username_error').text('( This username is already in use )');
+                          }
+                        }}
+                      );
+                    }else {
+                      $('#user_username').removeClass('is-valid');
+                      $('#user_username').addClass('is-invalid');
+                      $('#user_username_error').removeClass('text-black');
+                      $('#user_username_error').text('( Between 6 and 20 characters for a username is acceptable )');
+                    }
+                  })
+                </script>
               </div>
             </div>
 

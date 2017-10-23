@@ -26,9 +26,9 @@ Rails.application.routes.draw do
 
   post 'get_district_ajax', to: 'users#get_district_ajax', as: 'get_district_ajax'
   post 'get_commune_ajax', to: 'users#get_commune_ajax', as: 'get_commune_ajax'
-
   post 'get_highschool_district_ajax', to: 'users#get_highschool_district_ajax', as: 'get_highschool_district_ajax'
   post 'get_highschool_list_ajax', to: 'users#get_highschool_list_ajax', as: 'get_highschool_list_ajax'
+  post 'check_username_ajax', to: 'users#check_username_ajax', as: 'check_username_ajax'
 
   get ':username', to: 'users#show', as: :user
   

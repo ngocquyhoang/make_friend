@@ -795,6 +795,15 @@ html, body {
     #user_username {
       text-transform: lowercase;
     }
+
+    .invalid-feedback {
+      font-size: 16px;
+
+      &.text-black {
+        color: rgba(0, 0, 0, 0.87) !important;
+        display: block !important;
+      }
+    }
   }
 
   .semantic-ui-form {

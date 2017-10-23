@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, User::AvatarUploader
   
+  validates :username, uniqueness: true, length: { in: 6..20 }
+
   def soft_delete  
     update_attribute(:deleted_at, Time.current)  
   end 
