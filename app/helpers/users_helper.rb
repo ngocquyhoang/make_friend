@@ -22,16 +22,25 @@ module UsersHelper
   end
 
   def get_school_list(province, district)
-    school_list = ActiveSupport::JSON.decode(File.read('databases/highschools.json'))
+    school_list = ActiveSupport::JSON.decode(File.read('databases/highschool_list.json'))
     school_list_fil = []
-    byebug
     school_list.each do |school|
-      if ( province.include? school['Ten_Tinh'] || school['Ten_Tinh'].include? province ) && ( school['Ten_Quan_Huyen'].include? district || district.include? school['Ten_Quan_Huyen'] )
+      if ( (province.include? school['Ten_Tinh']) || (school['Ten_Tinh'].include? province) ) && ( (school['Ten_Quan_Huyen'].include? district) || (district.include? school['Ten_Quan_Huyen']) )
         school_list_fil << school 
       end
     end
 
     return school_list_fil
+  end
+
+  def get_school_address user
+    highschool_list = get_school_list(user.highschool_province, user.highschool_district)
+    school_address = ""
+    highschool_list.each do |highschool|
+      school_address = "#{highschool['Dia_Chi']} - #{highschool['Ten_Tinh']}" if highschool['Ten_Truong'] == user.high_school
+    end
+
+    return school_address
   end
 
   def get_job_list
@@ -41,6 +50,15 @@ module UsersHelper
     end
 
     return jobs
+  end
+
+  def get_university_list
+    university_list = []
+    File.readlines('databases/univesity_list.txt').map do |line|
+      university_list << line.split("\r\n")[0]
+    end
+
+    return university_list
   end
 
   def get_like_dislike_list

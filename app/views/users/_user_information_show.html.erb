@@ -1,0 +1,106 @@
+<div class="user-information">
+  <ul class="user-information-list list-unstyled">
+    <% if user_target.username? %>
+      <li class="username"><%= link_to "@#{user_target.username}", user_path( user_target.username ), class: "user-name-link" %></li>
+    <% end %>
+    <li class="name-or-email"><%= user_target.name? ? user_target.name : user_target.email %></li>
+    <% if user_target.gender? %>
+      <li class="gender-icon">
+        <% if user_target.gender == "male" %>
+          <i class="fa fa-mars" aria-hidden="true"></i>
+        <% elsif user_target.gender == "female" %>
+          <i class="fa fa-venus" aria-hidden="true"></i>
+        <% end %>
+      </li>
+    <% end %>
+    <% if user_target.dob? %>
+      <li class="infor-line text-center"><b><%= user_target.dob.strftime("%Y %B %d") %> - <%= get_age user_target.dob %> years old </b></li>
+    <% end %>
+    <% if user_target.address_commune? || user_target.address_district? || user_target.address_province? %>
+      <li class="infor-line">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            Address:
+          </div>
+          <div class="table-child ver-mid">
+            <%= address_for user_target %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    <% if user_target.job? %>
+      <li class="infor-line">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            Job:
+          </div>
+          <div class="table-child ver-mid">
+            <%= user_target.job.gsub('|', ', ') %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    <% if user_target.hobby? %>
+      <li class="infor-line">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            Hobby:
+          </div>
+          <div class="table-child ver-mid">
+            <%= user_target.hobby.gsub('|', ', ') %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    <% if user_target.dislike? %>
+      <li class="infor-line">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            Dislike:
+          </div>
+          <div class="table-child ver-mid">
+            <%= user_target.dislike.gsub('|', ', ') %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    <% if user_target.high_school? %>
+      <li class="infor-line">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            High school:
+          </div>
+          <div class="table-child ver-mid">
+            <%= user_target.high_school %>
+            <span class="address-highschool">( Address: <%= get_school_address user_target %> )</span>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    <% if user_target.univesity? %>
+      <li class="infor-line infor-last-child">
+        <div class="table-panel">
+          <div class="table-child ver-mid infor-label">
+            University:
+          </div>
+          <div class="table-child ver-mid">
+            <%= user_target.univesity %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    <li>
+      <div class="verify-user-block">
+        <% if user_target.is_verified? %>
+          <button type="button" class="no-outline verify-user is-verified" > 
+            Verified user <i class="fa fa-check-circle" aria-hidden="true"></i>
+          </button>
+        <% else %>
+          <button type="button" class="no-outline verify-user is-pending" >
+            Pending verify <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          </button>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</div>

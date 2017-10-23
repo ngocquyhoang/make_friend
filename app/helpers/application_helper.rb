@@ -18,4 +18,12 @@ module ApplicationHelper
     now = Time.now
     now.year - dob.year - ( dob.to_time.change(:year => now.year) > now ? 1 : 0 )
   end
+
+  def address_for user
+    address = []
+    address << user.address_commune if user.address_commune?
+    address << user.address_district if user.address_district?
+    address << user.address_province if user.address_province?
+    return address.join(' - ')
+  end
 end

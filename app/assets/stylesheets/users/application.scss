@@ -534,6 +534,14 @@ html, body {
     }
 
     .user-information {
+      .address-highschool {
+        display: block;
+        font-size: 15px;
+        font-style: italic;
+        margin-top: 10px;
+        line-height: 18px;
+      }
+
       .user-information-list {
         li {
           padding: 12px 10px;
@@ -771,6 +779,12 @@ html, body {
       width: 170px;
       font-size: 17px;
       line-height: 20px;
+    }
+
+    .modal-footer .btn {
+      font-family: 'Jura', sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
     }
 
     .form-control {

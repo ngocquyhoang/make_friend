@@ -1,7 +1,13 @@
 class UsersController < Users::AccessController
   include UsersHelper
   before_action :show_user, only: :show
-  before_action :set_user, except: [:show, :get_district_ajax, :get_commune_ajax]
+  before_action :set_user, except: [
+    :show, 
+    :get_district_ajax, 
+    :get_commune_ajax, 
+    :get_highschool_district_ajax, 
+    :get_highschool_list_ajax
+  ]
 
   def show
     redirect_to users_dashboard_index_path unless @user
@@ -9,14 +15,15 @@ class UsersController < Users::AccessController
     if @user == current_user
       @jobs = get_job_list
       @like_dislike_list = get_like_dislike_list
+      @university_list = get_university_list
       
       @address_province_list = ActiveSupport::JSON.decode(File.read('databases/address_province.json'))
       @distric_list_of_province = get_district_list(@user.address_province)
       @commune_list_of_province = get_commune_list(@user.address_province, @user.address_district)
 
-      @address_highschool_province_list = []
-      @address_highschool_district_list = []
-      @highschool_list = []
+      @address_highschool_province_list = ActiveSupport::JSON.decode(File.read('databases/address_province.json'))
+      @address_highschool_district_list = get_district_list(@user.highschool_province)
+      @highschool_list = get_school_list(@user.highschool_province, @user.highschool_district)
     end
   end
 
@@ -74,7 +81,7 @@ class UsersController < Users::AccessController
   end
 
   def user_information_params
-    params.require(:user).permit(:username, :name, :gender, :dob, { :job => [] }, { :hobby => [] }, { :dislike => [] }, :address_commune, :address_district, :address_province)
+    params.require(:user).permit(:username, :name, :gender, :dob, { :job => [] }, { :hobby => [] }, { :dislike => [] }, :address_commune, :address_district, :address_province, :highschool_province, :highschool_district, :high_school, :univesity)
   end
 
   def user_avatar_params

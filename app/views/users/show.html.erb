@@ -17,110 +17,8 @@
               <%= avatar_for @user %>
             <% end %>
           </div>
-          <div class="user-information">
-            <ul class="user-information-list list-unstyled">
-              <% if @user.username? %>
-                <li class="username"><%= link_to "@#{@user.username}", user_path( @user.username ), class: "user-name-link" %></li>
-              <% end %>
-              <li class="name-or-email"><%= @user.name? ? @user.name : @user.email %></li>
-              <% if @user.gender? %>
-                <li class="gender-icon">
-                  <% if @user.gender == "male" %>
-                    <i class="fa fa-mars" aria-hidden="true"></i>
-                  <% elsif @user.gender == "female" %>
-                    <i class="fa fa-venus" aria-hidden="true"></i>
-                  <% end %>
-                </li>
-              <% end %>
-              <% if @user.dob? %>
-                <li class="infor-line text-center"><b><%= @user.dob.strftime("%Y %B %d") %> - <%= get_age @user.dob %> years old </b></li>
-              <% end %>
-              <%# if @user.address_commune? || @user.address_district? || @user.address_province? %>
-                <li class="infor-line">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid infor-label">
-                      Address:
-                    </div>
-                    <div class="table-child ver-mid">
-                      <%#= @user.address_commune %>
-                    </div>
-                  </div>
-                </li>
-              <%# end %>
-              <%# if @user.job? %>
-                <li class="infor-line">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid infor-label">
-                      Job:
-                    </div>
-                    <div class="table-child ver-mid">
-                      <%#= @user.job %>
-                    </div>
-                  </div>
-                </li>
-              <%# end %>
-              <%# if @user.hobby? %>
-                <li class="infor-line">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid infor-label">
-                      Hobby:
-                    </div>
-                    <div class="table-child ver-mid">
-                      <%#= @user.hobby %>
-                    </div>
-                  </div>
-                </li>
-              <%# end %>
-              <%# if @user.dislike? %>
-                <li class="infor-line">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid infor-label">
-                      Dislike:
-                    </div>
-                    <div class="table-child ver-mid">
-                      <%#= @user.dislike %>
-                    </div>
-                  </div>
-                </li>
-              <%# end %>
-              <%# if @user.high_school? %>
-                <li class="infor-line">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid infor-label">
-                      High school:
-                    </div>
-                    <div class="table-child ver-mid">
-                      <%#= @user.high_school %>
-                    </div>
-                  </div>
-                </li>
-              <%# end %>
-              <%# if @user.univesity? %>
-                <li class="infor-line infor-last-child">
-                  <div class="table-panel">
-                    <div class="table-child ver-mid infor-label">
-                      University:
-                    </div>
-                    <div class="table-child ver-mid">
-                      <%#= @user.univesity %>
-                    </div>
-                  </div>
-                </li>
-              <%# end %>
-              <li>
-                <div class="verify-user-block">
-                  <% if @user.is_verified? %>
-                    <button type="button" class="no-outline verify-user is-verified" > 
-                      Verified user <i class="fa fa-check-circle" aria-hidden="true"></i>
-                    </button>
-                  <% else %>
-                    <button type="button" class="no-outline verify-user is-pending" >
-                      Pending verify <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    </button>
-                  <% end %>
-                </div>
-              </li>
-            </ul>
+          <div id="userInformationComboBox">
+            <%= render 'user_information_show', user_target: @user %>
           </div>
         </div>
       </div>
@@ -326,6 +224,9 @@
                         type: 'post',
                         success: function(result){
                           $('#user_address_district').children('option:not(:first)').remove();
+                          $('#user_address_commune').children('option:not(:first)').remove();
+                          $('.js--select-address-district > .text').text('Select your District');
+                          $('.js--select-address-commune > .text').text('Select your Commune');
                           $.each(result.distric_list, function(index, value) {
                             $('#user_address_district')
                               .append($("<option></option>")
@@ -343,6 +244,7 @@
                         type: 'post',
                         success: function(result){
                           $('#user_address_commune').children('option:not(:first)').remove();
+                          $('.js--select-address-commune > .text').text('Select your Commune');
                           $.each(result.commune_list, function(index, value) {
                             $('#user_address_commune')
                               .append($("<option></option>")
@@ -391,6 +293,9 @@
                         type: 'post',
                         success: function(result){
                           $('#user_highschool_district').children('option:not(:first)').remove();
+                          $('#user_high_school').children('option:not(:first)').remove();
+                          $('.js--select-highschool-district > .text').text('Select school district');
+                          $('.js--select-highschool > .text').text('Select your High School');
                           $.each(result.distric_list, function(index, value) {
                             $('#user_highschool_district')
                               .append($("<option></option>")
@@ -408,6 +313,7 @@
                         type: 'post',
                         success: function(result){
                           $('#user_high_school').children('option:not(:first)').remove();
+                          $('.js--select-highschool > .text').text('Select your High School');
                           $.each(result.school_list, function(index, value) {
                             $('#user_high_school')
                               .append($("<option></option>")
@@ -428,7 +334,11 @@
                   University
                 </div>
                 <div class="table-child ver-mid">
-                  <%= f.text_field :univesity, autofocus: true, class: 'form-control form-control-lg', placeholder: "University" %>
+                  <%= f.select :univesity, @university_list, { :include_blank => "Select your University"}, { :class => "ui fluid search dropdown js--select-univesity semantic-ui-form form-multipe" } %>
+
+                  <script type="text/javascript">
+                    $('.js--select-univesity').dropdown();
+                  </script>
                 </div>
               </div>
             </div>
@@ -436,7 +346,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-lg no-outline cursor-pointer" data-dismiss="modal">Cancel</button>
-            <%= f.submit "Upload", class: "btn btn-lg btn-primary no-outline cursor-pointer" %>
+            <%= f.submit "Update Information", class: "btn btn-lg btn-primary no-outline cursor-pointer" %>
           </div>
         <% end %>
       </div>
