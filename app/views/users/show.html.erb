@@ -24,7 +24,46 @@
       </div>
       <div class="col-lg-8 col-md-12">
         <div class="user-content-box">
-          
+          <div class="user-infor-tab">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="#activiry_tab" role="tab" data-toggle="tab">Activities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#followers_tab" role="tab" data-toggle="tab">Followers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#following_tab" role="tab" data-toggle="tab">Following</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#friend_tab" role="tab" data-toggle="tab">Friend</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="activiry_tab">Activities</div>
+              <div role="tabpanel" class="tab-pane fade" id="followers_tab">Followers</div>
+              <div role="tabpanel" class="tab-pane fade" id="following_tab">Following</div>
+              <div role="tabpanel" class="tab-pane fade" id="friend_tab">Friend</div>
+            </div>
+          </div>
+          <div class="user-status-box">
+            <ul class="status-list">
+              <li class="status-item">
+                <div class="table-panel">
+                  <div class="table-child ver-mid">
+                    <div class="status-user-avatar">
+                      <%= avatar_for @user %>
+                    </div>
+                  </div>
+                  <div class="table-child ver-mid">
+                    <div class="status-user-content">
+                      <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

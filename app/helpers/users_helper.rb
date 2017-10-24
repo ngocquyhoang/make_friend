@@ -25,8 +25,10 @@ module UsersHelper
     school_list = ActiveSupport::JSON.decode(File.read('databases/highschool_list.json'))
     school_list_fil = []
     school_list.each do |school|
-      if ( (province.include? school['Ten_Tinh']) || (school['Ten_Tinh'].include? province) ) && ( (school['Ten_Quan_Huyen'].include? district) || (district.include? school['Ten_Quan_Huyen']) )
-        school_list_fil << school 
+      unless province.nil? && district.nil?
+        if ( (province.include? school['Ten_Tinh']) || (school['Ten_Tinh'].include? province) ) && ( (school['Ten_Quan_Huyen'].include? district) || (district.include? school['Ten_Quan_Huyen']) )
+          school_list_fil << school 
+        end
       end
     end
 

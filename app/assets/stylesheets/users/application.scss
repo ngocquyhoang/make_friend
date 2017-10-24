@@ -699,6 +699,28 @@ html, body {
       }
     }
   }
+
+  .user-content-box {
+
+    .user-infor-tab {
+      padding: 20px 12px;
+      border: 1px solid #C63D0F;
+      border-radius: 5px;
+      margin-bottom: 20px;
+
+      .nav-tabs .nav-link {
+        font-size: 18px;
+        text-transform: uppercase;
+        border: 1px solid #C63D0F;
+        border-top-color: transparent;
+        border-right-color: transparent;
+      }
+
+      .nav-tabs .nav-link.active {
+        border-color: #C63D0F #C63D0F #fff;
+      }
+    }
+  }
 }
 
 #deleteAccountModal {
