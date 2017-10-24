@@ -1,0 +1,36 @@
+<nav id="userMainNav" class="navbar fixed-top navbar-expand-lg navbar-light">
+  <div class="container">
+    <%= link_to root_path, class: "main-logo-link" do %>
+      <h1 class="main-logo-text">make Friend</h1>
+    <% end %>
+    <button class="navbar-toggler no-outline" type="button" data-toggle="collapse" data-target="#makeFriendUserNav" aria-controls="makeFriendUserNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="makeFriendUserNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Dashboard", users_dashboard_index_path, class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <% if current_user.username? %>
+              <%= link_to "My Profile", user_path(current_user.username), class: "nav-link" %>
+            <% else %>
+              <%= link_to "My Profile", user_path(current_user.id), class: "nav-link" %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Account Setting", edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

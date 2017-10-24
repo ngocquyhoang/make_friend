@@ -1,5 +1,3 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 en:
   devise:
     confirmations:
@@ -16,17 +14,18 @@ en:
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
+      deleted_account: "You've deleted your account. Thanks!"
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "[Account notice] Please confirm your email :: Make Friend Around The World"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "[Account notice] Reset your password :: Make Friend Around The World"
       unlock_instructions:
-        subject: "Unlock instructions"
+        subject: "[Account notice] Your account was locked :: Make Friend Around The World"
       email_changed:
-        subject: "Email Changed"
+        subject: "[Account notice] Your email was changed :: Make Friend Around The World"
       password_change:
-        subject: "Password Changed"
+        subject: "[Account notice] Your password was changed :: Make Friend Around The World"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."

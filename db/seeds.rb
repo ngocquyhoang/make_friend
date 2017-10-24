@@ -1,7 +1,4 @@
-Admin.create(email: 'admin@example.com', password: '123456789', password_confirmation: '123456789')
-Admin.create(email: 'admin@ngocquyhoang.com', password: '123456789', password_confirmation: '123456789')
-Admin.create(email: 'ngocquyhoang@ngocquyhoang.com', password: '123456789', password_confirmation: '123456789')
+Admin.create( email: 'admin@ngocquyhoang.com', password: '123456789', password_confirmation: '123456789' )
 
-User.create(email: 'user@example.com', password: '123456789', password_confirmation: '123456789', username: 'user_example')
-User.create(email: 'user@ngocquyhoang.com', password: '123456789', password_confirmation: '123456789', username: 'user_ngocquyhoang')
-User.create(email: 'ngocquyhoang@ngocquyhoang.com', password: '123456789', password_confirmation: '123456789', username: 'ngocquyhoang')
+User.create( email: 'ngocquyhoang.93@gmail.com', username: 'ngocquyhoang', name: 'Hoang Ngoc Quy', gender: 'male', is_verified: true, password: '123456789', password_confirmation: '123456789', confirmed_at: DateTime.now )
+User.create( email: 'ngocquyhoang2911@gmail.com', username: 'ngocquyhoang2911', name: 'Hoang Ngoc Quy', gender: 'male', is_verified: false, password: '123456789', password_confirmation: '123456789', confirmed_at: DateTime.now )

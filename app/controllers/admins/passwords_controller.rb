@@ -1,4 +1,6 @@
 class Admins::PasswordsController < Devise::PasswordsController
+  include AccessibleUser
+  
   layout :admin_layout
 
   protected

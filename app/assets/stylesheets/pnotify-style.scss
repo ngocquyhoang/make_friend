@@ -1,0 +1,29 @@
+.ui-pnotify-closer:active,
+.ui-pnotify-sticker:active,
+.ui-pnotify-closer:focus,
+.ui-pnotify-sticker:focus,  {
+  outline: none;
+}
+
+.notice-warning {
+  .brighttheme {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #f0ad4e;
+  }
+}
+
+.notice-success,
+.notice-notice {
+  .brighttheme {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #5cb85c;
+  }
+}
+
+.notice-error,
+.notice-alert {
+  .brighttheme {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #d9534f;
+  }
+}

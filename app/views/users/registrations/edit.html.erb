@@ -1,43 +1,214 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% @is_global_layout = true %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="user-main-wrap">
+  <div class="container">
+    <div class="user-edit-screen">
+      <div class="screen-header">
+        <h2 class="screen-title">Account setting</h2>
+      </div>
+      <div class="screen-body">
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <h3 class="screen-note">
+            Currently waiting confirmation for: <span class="note-email"><%= resource.unconfirmed_email %></span>
+          </h3>
+          <%= link_to "Go to Dashboard", users_dashboard_index_path, class: "btn btn-outline-primary btn-lg" %>
+        <% else %>
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-10 col-xs-12">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <div class="form-group js--email-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid text-left">
+                      Email
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.empty? %>
+                        <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg', placeholder: "Email" %>
+                        <div class="invalid-feedback text-left"></div>
+                      <% else %>
+                        <% if resource.errors.messages[:email].empty? %>
+                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-valid', placeholder: "Email" %>
+                          <div class="invalid-feedback text-left"></div>
+                        <% else %>
+                          <%= f.email_field :email, autofocus: true, class: 'form-control form-control-lg is-invalid', placeholder: "Email" %>
+                          <div class="invalid-feedback text-left">
+                            <%= "Email " + resource.errors.messages[:email][0] %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+                <div class="form-group js--new-password-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid text-left">
+                      New password
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
+                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password" %>
+                        <div class="invalid-feedback text-left text-black"> ( Leave blank if you don't want to change it ) </div>
+                      <% else %>
+                        <%= f.password_field :password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password" %>
+                        <div class="invalid-feedback text-left">
+                          <% if resource.errors.messages[:password].empty? %>
+                            <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
+                          <% else %>
+                            <%= "New password " + resource.errors.messages[:password][0] %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group js--comfirm-new-password-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid text-left">
+                      New password confirmation
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.messages[:password].empty? && resource.errors.messages[:password_confirmation].empty? %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password confirmation" %>
+                        <div class="invalid-feedback text-left"></div>
+                      <% else %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "New password confirmation" %>
+                        <div class="invalid-feedback text-left">
+                          <% unless resource.errors.messages[:password_confirmation].empty? %>
+                           <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group js--current-password-field">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid text-left">
+                      Current password
+                    </div>
+                    <div class="table-child ver-mid">
+                      <% if resource.errors.messages[:current_password].empty? %>
+                        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Current password" %>
+                        <div class="invalid-feedback text-left text-black"> ( We need your current password to confirm your changes ) </div>
+                      <% else %>
+                        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Current password" %>
+                        <div class="invalid-feedback text-left">
+                          <%= "Current password " + resource.errors.messages[:current_password][0] %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group submit-group">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 text-right">
+                      <button type="button" class="btn btn-outline-danger btn-lg cursor-pointer" data-toggle="modal" data-target="#deleteAccountModal">
+                        Cancel my account
+                      </button>
+                    </div>
+                    <div class="col-lg-6 col-md-12 text-right">
+                      <%= f.submit "Save Setting", class: 'btn btn-outline-primary btn-lg cursor-pointer' %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure ?</h5>
+        <button type="button" class="close cursor-pointer" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-right">
+        <button type="button" class="btn btn-secondary btn-lg cursor-pointer" data-dismiss="modal">No</button>
+        <%= button_to "Yes", registration_path(resource_name), method: :delete, class: 'btn btn-danger btn-lg cursor-pointer' %>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<script type="text/javascript">
+  $( '#user_email' ).keyup( () => {
+    if ( validateEmail( $( '#user_email' ).val() ) ) {
+      $( '#user_email' ).removeClass('is-invalid');
+      $( '#user_email' ).addClass('is-valid');
+      $( '.js--email-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_email' ).removeClass('is-valid');
+      $( '#user_email' ).addClass('is-invalid');
+      if ( $( '#user_email' ).val() == "" ) {
+        $( '.js--email-field .invalid-feedback' ).text("Email can't be blank")
+      } else {
+        $( '.js--email-field .invalid-feedback' ).text("Email is invalid")
+      }
+    }
+  })
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+  var validateEmail = email => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    return re.test(email);
+  }
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+  $( '#user_current_password' ).keyup( () => {
+    if ( $( '#user_current_password' ).val().length >= 8 ) {
+      $( '#user_current_password' ).removeClass('is-invalid');
+      $( '#user_current_password' ).addClass('is-valid');
+      $( '.js--current-password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_current_password' ).removeClass('is-valid');
+      $( '#user_current_password' ).addClass('is-invalid');
 
-<h3>Cancel my account</h3>
+      if ( $( '#user_current_password' ).val().length == 0 ) {
+        $( '.js--current-password-field .invalid-feedback' ).text("Current password can't be blank")
+      } else {
+        $( '.js--current-password-field .invalid-feedback' ).text("Current password is too short (minimum is 8 characters)")
+      }
+    }
+  })
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  $( '#user_password' ).keyup( () => {
+    if ( $( '#user_password' ).val().length >= 8 ) {
+      $( '#user_password' ).removeClass('is-invalid');
+      $( '#user_password' ).addClass('is-valid');
+      $( '.js--new-password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_password' ).removeClass('is-valid');
+      $( '#user_password' ).removeClass('is-invalid');
+      $( '.js--new-password-field .invalid-feedback' ).text(" ( Leave blank if you don't want to change it )" )
 
-<%= link_to "Back", :back %>
+      if( $( '#user_password' ).val().length != 0 ) {
+        $( '#user_password' ).addClass('is-invalid');
+        $( '.js--new-password-field .invalid-feedback' ).text("Password is too short (minimum is 8 characters)")
+      }
+    }
+  })
+
+  $( '#user_password_confirmation' ).keyup( () => {
+    if ( $( '#user_password_confirmation' ).val() == $( '#user_password' ).val() && $( '#user_password_confirmation' ).val().length != 0 ) {
+      $( '#user_password_confirmation' ).removeClass('is-invalid');
+      $( '#user_password_confirmation' ).addClass('is-valid');
+      $( '.js--comfirm-new-password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_password_confirmation' ).removeClass('is-valid');
+      $( '#user_password_confirmation' ).removeClass('is-invalid');
+
+      if( $( '#user_password_confirmation' ).val().length != 0 ) {
+        $( '#user_password_confirmation' ).addClass('is-invalid');
+        $( '.js--comfirm-new-password-field .invalid-feedback' ).text( "Password confirmation doesn't match Password ")
+      }
+    }
+  })
+</script>

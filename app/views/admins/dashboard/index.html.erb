@@ -1,1 +1,4 @@
 <h1>Admin Dashboard</h1>
+<% if admin_signed_in? %>
+  <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-primary btn-lg" %>
+<% end %>

@@ -33,15 +33,20 @@ ActiveRecord::Schema.define(version: 20170921102555) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name"
+    t.string "avatar"
+    t.string "gender"
+    t.string "address_commune"
+    t.string "address_district"
+    t.string "address_province"
+    t.string "highschool_province"
+    t.string "highschool_district"
     t.text "job"
     t.text "hobby"
     t.text "dislike"
-    t.datetime "dob"
-    t.text "address"
     t.text "high_school"
     t.text "univesity"
+    t.datetime "dob"
     t.boolean "is_verified", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -51,6 +56,14 @@ ActiveRecord::Schema.define(version: 20170921102555) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

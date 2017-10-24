@@ -8,6 +8,7 @@ end
 gem 'devise'
 gem 'rails', '~> 5.1.3'
 gem 'mysql2'
+gem 'jquery-rails'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -15,6 +16,10 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'remotipart', '~> 1.3.1'
+gem 'semantic-ui-sass'
 
 gem 'capistrano-rails', group: :development
 

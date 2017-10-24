@@ -3,19 +3,49 @@
   <head>
     <title>Home :: Make Friend Around The World</title>
 
+    <%= favicon_link_tag 'favicon.png' %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+
     <%= yield %>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <div class="pre-loader"></div>
+    <div class="over-loader"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script type="text/javascript">
+      $(window).load(function() {
+        $(".pre-loader").fadeOut(500);
+      });
+    </script>
+
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        jQuery(document).ready(function($) {
+          <% flash.each do |key, value| %>
+            new PNotify({
+                text: '<%= value %>',
+                addclass: 'notice-<%= key %>',
+                animate: {
+                  animate: true,
+                  in_class: 'rotateInDownLeft',
+                  out_class: 'rotateOutUpRight'
+                },
+                icon: false
+            });
+          <% end %>
+        });
+      </script>
+    <% end %>
   </body>
 </html>

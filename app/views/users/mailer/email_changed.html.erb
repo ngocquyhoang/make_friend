@@ -1,7 +1,34 @@
-<p>Hello <%= @email %>!</p>
+<div style=" margin: 30px 0px 0px 0px; text-align: center; font-family: Arial,Helvetica,sans-serif;" >
+  <div>
+    <%= link_to root_url do %>
+      <img src="https://res.cloudinary.com/ngocquyhoang/image/upload/v1507461176/main-logo_ygnste.png" style="max-width: 550px;">
+    <% end %> 
+  </div>
+  <div>
+    <h3 style="font-size: 35px; color: #007bff; margin-top: 30px; margin-bottom: 20px; font-weight: normal;">
+      Your email was changed
+    </h3>
+    <p style="font-size: 18px; line-height: 20px">Hello <span style="color: #28a745; font-size: 20px; font-weight: bold;"><%= @email %></span></p>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
-<% end %>
+    <p style="font-size: 18px; line-height: 20px">
+      <% if @resource.try(:unconfirmed_email?) %>
+        <p>We're contacting you to notify you that your email is being changed to <span style="color: #28a745; font-size: 20px; font-weight: bold"> <%= @resource.unconfirmed_email %>.</span></p>
+      <% else %>
+        <p>We're contacting you to notify you that your email has been changed to <span style="color: #28a745; font-size: 20px; font-weight: bold"> <%= @resource.email %>.</span></p>
+      <% end %>
+    </p>
+  </div>
+
+  <div style=" width: 100%; margin-top: 100px; padding: 15px 0px; background-color: #ffc107; ">
+    <div style="display: table; width: 100%;">
+      <div style="display: table-cell;">
+        <%= link_to "make Friend around the World", root_url, { :style => 'font-size: 18px; color: #ffffff; display: block; line-height: 20px; text-decoration: none;' } %>
+      </div>
+      <div style="display: table-cell;">
+        <a href="https://ngocquyhoang.com" style="font-size: 18px; color: #ffffff; display: block; line-height: 20px; text-decoration: none;">
+          @ngocquyhoang
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

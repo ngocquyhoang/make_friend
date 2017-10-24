@@ -1,25 +1,98 @@
-<h2>Change your password</h2>
+<div class="user-screen">
+  <div id="parallaxBackground" class="mouse-parallax-bg"></div>
+  <div class="user-content">
+    <div class="container">
+      <div class="row height-100vh align-items-center">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-10 col-xs-12">
+              <div class="user-main-block">
+                <div class="user-header table-panel">
+                  <div class="table-child ver-mid">
+                    <%= link_to "<", root_path, class: "back-to-home-button", title: "Go Home" %>
+                  </div>
+                  <div class="table-child">
+                    <h1 class="main-text-logo text-center header-font">Change your password</h1>
+                  </div>
+                </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+                <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put, class: "user-registration-form"}) do |f| %>
+                  <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+                  <div class="form-group js--password-field">
+                    <% if resource.errors.empty? %>
+                      <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "New password" %>
+                      <div class="invalid-feedback"></div>
+                    <% else %>
+                      <% if resource.errors.messages[:password].empty? %>
+                        <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'is-valid form-control form-control-lg', placeholder: "New password" %>
+                        <div class="invalid-feedback"></div>
+                      <% else %>
+                        <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'is-invalid form-control form-control-lg', placeholder: "New password" %>
+                        <div class="invalid-feedback">
+                          <%= "Password " + resource.errors.messages[:password][0] %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="form-group js--password-confirmation-field">
+                    <% if resource.errors.empty? %>
+                      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg', placeholder: "Confirm new password" %>
+                      <div class="invalid-feedback"></div>
+                    <% else %>
+                      <% if resource.errors.messages[:password_confirmation].empty? && resource.errors.messages[:password].empty? %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-valid', placeholder: "Confirm new password" %>
+                        <div class="invalid-feedback"></div>
+                      <% else %>
+                        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control form-control-lg is-invalid', placeholder: "Confirm new password" %>
+                        <div class="invalid-feedback">
+                          <%= "Password confirmation " + resource.errors.messages[:password_confirmation][0] unless resource.errors.messages[:password_confirmation].empty? %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit "Change my password", class: "btn btn-outline-light btn-lg btn-block" %>
+                  </div>
+                  <%= render 'users/shared/links' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+<script type="text/javascript">
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+  $( '#user_password' ).keyup( () => {
+    if ( $( '#user_password' ).val().length >= 8 ) {
+      $( '#user_password' ).removeClass('is-invalid');
+      $( '#user_password' ).addClass('is-valid');
+      $( '.js--password-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_password' ).removeClass('is-valid');
+      $( '#user_password' ).addClass('is-invalid');
+      if ( $( '#user_password' ).val() == "" ) {
+        $( '.js--password-field .invalid-feedback' ).text("Password can't be blank")
+      } else {
+        $( '.js--password-field .invalid-feedback' ).text("Password is too short (minimum is 8 characters)")
+      }
+    }
+  })
 
-<%= render "users/shared/links" %>
+  $( '#user_password_confirmation' ).keyup( () => {
+    if ( $( '#user_password_confirmation' ).val() == $( '#user_password' ).val() && $( '#user_password' ).val().length >= 8 ) {
+      $( '#user_password_confirmation' ).removeClass('is-invalid');
+      $( '#user_password_confirmation' ).addClass('is-valid');
+      $( '.js--password-confirmation-field .invalid-feedback' ).text('')
+    } else {
+      $( '#user_password_confirmation' ).removeClass('is-valid');
+      $( '#user_password_confirmation' ).addClass('is-invalid');
+      $( '.js--password-confirmation-field .invalid-feedback' ).text("Password confirmation doesn't match Password")
+    }
+  })
+</script>
+
