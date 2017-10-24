@@ -31,7 +31,10 @@ class UsersController < Users::AccessController
   def upload_avatar
     if @user == current_user
       respond_to do |format|
-        @user.reload if @user.update(user_avatar_params)
+        if @user.update(user_avatar_params)
+          @user.reload
+          set_activity(@user, "update avatar", nil)
+        end
         format.js {}
       end
     end
@@ -48,7 +51,10 @@ class UsersController < Users::AccessController
 
     if @user == current_user
       respond_to do |format|
-        @user.reload if @user.update(infor_params)
+        if @user.update(infor_params)
+          @user.reload
+          set_activity(@user, "update information", nil)
+        end
         format.js {}
       end
     end

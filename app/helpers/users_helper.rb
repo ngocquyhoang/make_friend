@@ -72,4 +72,15 @@ module UsersHelper
 
     return like_dislike_list
   end
+
+  def set_activity(user, type, target )
+    unless ( type.blank? && user.blank? )
+      if target.blank?
+        # byebug
+        Activity.create(activity_type: type, user_id: user.id )
+      else
+        Activity.create(activity_type: type, user_id: user.id, activity_target: target.id )
+      end
+    end
+  end
 end

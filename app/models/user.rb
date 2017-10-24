@@ -6,6 +6,8 @@ class User < ApplicationRecord
   
   validates :username, uniqueness: true, length: { in: 6..20 }
 
+  has_many :activities
+
   def soft_delete  
     update_attribute(:deleted_at, Time.current)  
   end 

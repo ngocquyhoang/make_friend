@@ -39,6 +39,19 @@ module ApplicationHelper
     return "<a href='#{user_link_path}' class='stick-avatar no-outline'>#{avatar} #{name}</a>".html_safe
   end
 
+  def activity_label activity
+    case activity.activity_type
+    when "update avatar"
+      return "#{stick_avatar_for activity.user} was update his avatar".html_safe
+    when "being friend"
+      return "#{stick_avatar_for activity.user} and #{stick_avatar_for( User.find activity.activity_target )} now is friend".html_safe
+    when "started following"
+      return "#{stick_avatar_for activity.user} started following #{stick_avatar_for( User.find activity.activity_target )}".html_safe
+    else
+      return "#{stick_avatar_for activity.user} was update his information".html_safe
+    end
+  end
+
   def get_age dob
     return nil unless dob
     now = Time.now

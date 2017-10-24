@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20171023122050) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "type"
+    t.string "activity_type"
     t.integer "activity_target"
     t.integer "user_id"
     t.datetime "created_at", null: false

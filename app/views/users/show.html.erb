@@ -43,86 +43,18 @@
               <div role="tabpanel" class="tab-pane fade show active" id="activiry_tab">
                 <div class="tab-container">
                   <ul class="list-unstyled activities-list">
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
+                    <% @user.activities.each do |activity| %>
+                      <li class="activity-item">
+                        <div class="table-panel">
+                          <div class="table-child ver-mid activity-time">
+                            <%= activity.created_at.in_time_zone('Hanoi').strftime("%b %d %H:%M") %>
+                          </div>
+                          <div class="table-child ver-mid">
+                            <%= activity_label activity %>
+                          </div>
                         </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> update his status
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> update his information
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> and <%= stick_avatar_for @user %> now is friend
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> started following <%= stick_avatar_for @user %>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> started following <%= stick_avatar_for @user %>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> started following <%= stick_avatar_for @user %>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> started following <%= stick_avatar_for @user %>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="activity-item">
-                      <div class="table-panel">
-                        <div class="table-child ver-mid activity-time">
-                          Nov 29 15:10
-                        </div>
-                        <div class="table-child ver-mid">
-                          <%= stick_avatar_for @user %> started following <%= stick_avatar_for @user %>
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+                    <% end %>
                   </ul>
                 </div>
               </div>
