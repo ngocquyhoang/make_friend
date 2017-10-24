@@ -61,8 +61,8 @@
               <div role="tabpanel" class="tab-pane fade" id="followers_tab">
                 <div class="tab-container">
                   <div class="user-stick-list">
-                    <% (1..20).each do |index| %>
-                      <%= stick_avatar_for @user %>
+                    <% @user.followers.each do |user| %>
+                      <%= stick_avatar_for user %>
                     <% end %>
                   </div>
                 </div>
@@ -70,8 +70,8 @@
               <div role="tabpanel" class="tab-pane fade" id="following_tab">
                 <div class="tab-container">
                   <div class="user-stick-list">
-                    <% (1..20).each do |index| %>
-                      <%= stick_avatar_for @user %>
+                    <% @user.following.each do |user| %>
+                      <%= stick_avatar_for user %>
                     <% end %>
                   </div>
                 </div>
