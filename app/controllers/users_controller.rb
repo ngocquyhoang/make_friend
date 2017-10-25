@@ -12,6 +12,7 @@ class UsersController < Users::AccessController
 
   def show
     redirect_to users_dashboard_index_path unless @user
+    @activities = @user.activities.limit(7).order('created_at DESC')
 
     if @user == current_user
       @jobs = get_job_list

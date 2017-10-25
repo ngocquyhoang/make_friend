@@ -1,2 +1,6 @@
 $('#editUserInformationModal').modal('hide');
-$('#userInformationComboBox').html('<%= j render "user_information_show", user_target: @user %>')
+$('#userInformationComboBox').html('<%= j render "user_information_show", user_target: @user %>');
+
+if (location.pathname.replace("/", "") != "<%= @user.username %>") {
+  window.location.href = "/<%= @user.username %>"
+}

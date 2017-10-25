@@ -1,10 +1,14 @@
+require 'unicode_utils'
+
 class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
-
-  mount_uploader :avatar, User::AvatarUploader
   
-  validates :username, uniqueness: true, length: { in: 6..20 }
+  mount_uploader :avatar, User::AvatarUploader
+
+  before_save :clean_username
+  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
+  validates :username, uniqueness: true, length: { in: 6..20 }, format: { with: VALID_USERNAME_REGEX }
 
   has_many :activities
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -34,5 +38,9 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def clean_username
+    self.username = UnicodeUtils.downcase("#{self.username}", :tr).gsub(/[()-,. @*&$#^!']/, '')
   end
 end

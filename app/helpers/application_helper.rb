@@ -1,7 +1,7 @@
 module ApplicationHelper
   def avatar_for user
     if user.avatar?
-      cl_image_tag(@user.avatar.full_public_id, :transformation=>[{:width=>400, :height=>400, :gravity=>"auto", :radius=>"max", :crop=>"crop"}, {:width=>200, :crop=>"scale"}])
+      cl_image_tag(user.avatar.full_public_id, :transformation=>[{:width=>400, :height=>400, :gravity=>"auto", :radius=>"max", :crop=>"crop"}, {:width=>200, :crop=>"scale"}])
     else
       if user.gender == "male"
         image_tag "user-avatar-male.png", class: "img-user-avatar"
@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def stick_avatar_for user
     if user.avatar?
-      avatar = cl_image_tag(@user.avatar.full_public_id, :transformation=>[{:width=>400, :height=>400, :gravity=>"auto", :radius=>"max", :crop=>"crop"}, {:width=>200, :crop=>"scale"}], class: "ui avatar image")
+      avatar = cl_image_tag(user.avatar.full_public_id, :transformation=>[{:width=>400, :height=>400, :gravity=>"auto", :radius=>"max", :crop=>"crop"}, {:width=>200, :crop=>"scale"}], class: "ui avatar image")
     else
       if user.gender == "male"
         avatar = image_tag "user-avatar-male.png", class: "ui avatar image"
