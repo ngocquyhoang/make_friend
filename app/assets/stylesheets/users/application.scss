@@ -226,6 +226,10 @@ html, body {
     &.ver-mid {
       vertical-align: middle;
     }
+
+    &.ver-top {
+      vertical-align: top;
+    }
   }
 }
 
@@ -748,6 +752,50 @@ html, body {
 
       .nav-tabs .nav-link.active {
         border-color: #C63D0F #C63D0F #fff;
+      }
+    }
+
+    .user-status-box {
+      .user-contex-header {
+        font-size: 26px;
+        line-height: 30px;
+        text-transform: uppercase;
+        font-family: 'Jura', sans-serif;
+        margin-bottom: 20px;
+      }
+
+      .status-list {
+        list-style: none;
+        padding: 0px;
+        margin-bottom: 0px;
+
+        .status-item {
+          .status-avatar-box {
+            width: 100px;
+
+            .status-user-avatar {
+              padding-right: 10px;
+
+              img {
+                border-radius: 50px;
+                max-width: 100%;
+              }
+            }
+          }
+
+          .status-user-content {
+            padding: 12px;
+            border: 1px solid #C63D0F;
+            border-radius: 5px;
+
+            p {
+              margin-bottom: 0px;
+              font-style: 18px;
+              line-height: 20px;
+              font-family: 'Jura', sans-serif;
+            }
+          }
+        }
       }
     }
   }
