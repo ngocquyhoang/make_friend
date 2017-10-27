@@ -76,7 +76,6 @@ module UsersHelper
   def set_activity(user, type, target )
     unless ( type.blank? && user.blank? )
       if target.blank?
-        # byebug
         Activity.create(activity_type: type, user_id: user.id )
       else
         Activity.create(activity_type: type, user_id: user.id, activity_target: target.id )

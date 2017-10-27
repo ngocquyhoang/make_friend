@@ -7,7 +7,8 @@ class UsersController < Users::AccessController
     :get_commune_ajax, 
     :get_highschool_district_ajax, 
     :get_highschool_list_ajax,
-    :check_username_ajax
+    :check_username_ajax,
+    :update_status
   ]
 
   def show
@@ -61,6 +62,19 @@ class UsersController < Users::AccessController
     end
   end
 
+  def update_status
+    if current_user.id == user_status_params[:user_id].to_i
+      respond_to do |format|
+        @status = Status.new(user_status_params)
+        if @status.save
+          @status.reload
+          set_activity(@status.user, "update status", nil)
+        end
+        format.js {}
+      end
+    end
+  end
+
   def get_district_ajax
     render json: { 'distric_list': get_district_list(params['province']) }
   end
@@ -103,5 +117,9 @@ class UsersController < Users::AccessController
 
   def user_avatar_params
     params.require(:user).permit(:avatar)
+  end
+
+  def user_status_params
+    params.require(:status).permit(:status, :user_id)
   end
 end

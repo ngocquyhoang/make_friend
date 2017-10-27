@@ -43,6 +43,8 @@ module ApplicationHelper
     case activity.activity_type
     when "update avatar"
       return "#{stick_avatar_for activity.user} was update his avatar".html_safe
+    when "update status"
+      return "#{stick_avatar_for activity.user} was update his status".html_safe
     when "being friend"
       return "#{stick_avatar_for activity.user} and #{stick_avatar_for( User.find activity.activity_target )} now is friend".html_safe
     when "started following"
