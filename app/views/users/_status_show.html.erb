@@ -1,4 +1,4 @@
-<li class="status-item">
+<li class="status-item" data-status-id="<%= status_target.id %>">
   <div class="table-panel">
     <div class="table-child status-avatar-box ver-top">
       <div class="status-user-avatar">
@@ -6,6 +6,33 @@
       </div>
     </div>
     <div class="table-child ver-top">
+      <p class="status-time">
+        <%= status_target.created_at.in_time_zone('Hanoi').strftime("%Y %b %d %H:%M") %>
+        <% if status_target.user == current_user %>
+          <button type="button" class="delete-status no-outline cursor-pointer" data-toggle="modal" data-target="#deleteStatusModal_<%= status_target.id %>" >
+            Delete 
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        <% end %>
+      </p>
+      <% if status_target.user == current_user %>
+        <div class="modal fade" id="deleteStatusModal_<%= status_target.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteStatusModalLabel_<%= status_target.id %>" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteStatusModalLabel_<%= status_target.id %>">Are you sure?</h5>
+                <button type="button" class="close no-outline cursor-pointer" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary no-outline cursor-pointer" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary no-outline cursor-pointer js--delete-status" data-status-id="<%= status_target.id %>">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <div class="status-user-content">
         <p><%= status_target.status %></p>
       </div>

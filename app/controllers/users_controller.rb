@@ -8,12 +8,14 @@ class UsersController < Users::AccessController
     :get_highschool_district_ajax, 
     :get_highschool_list_ajax,
     :check_username_ajax,
+    :delete_status_ajax,
     :update_status
   ]
 
   def show
     redirect_to users_dashboard_index_path unless @user
     @activities = @user.activities.limit(7).order('created_at DESC')
+    @user_status = @user.statuses.limit(10).order('created_at DESC')
 
     if @user == current_user
       @jobs = get_job_list
@@ -63,13 +65,14 @@ class UsersController < Users::AccessController
   end
 
   def update_status
-    if current_user.id == user_status_params[:user_id].to_i
+    if current_user.id == user_update_status_params[:user_id].to_i && !user_update_status_params[:status].blank?
       respond_to do |format|
-        @status = Status.new(user_status_params)
+        @status = Status.new(user_update_status_params)
         if @status.save
           @status.reload
           set_activity(@status.user, "update status", nil)
         end
+
         format.js {}
       end
     end
@@ -100,6 +103,15 @@ class UsersController < Users::AccessController
     end
   end
 
+  def delete_status_ajax
+    status = Status.find_by_id( params[:status_id].to_i )
+    if !status.nil? && status.user == current_user
+      render json: { 'success': true, 'status_id': params[:status_id] } if status.destroy
+    else
+      render json: { 'success': false }
+    end
+  end
+
   private
 
   def show_user
@@ -119,7 +131,7 @@ class UsersController < Users::AccessController
     params.require(:user).permit(:avatar)
   end
 
-  def user_status_params
+  def user_update_status_params
     params.require(:status).permit(:status, :user_id)
   end
 end

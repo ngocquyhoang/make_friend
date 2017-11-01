@@ -764,13 +764,77 @@ html, body {
         margin-bottom: 20px;
       }
 
+      .status-form {
+        margin-bottom: 20px;
+
+        #status_status {
+          font-size: 18px;
+          font-family: 'Jura', sans-serif;
+          line-height: 20px;
+          min-height: 80px;
+          max-height: 160px;
+          padding: 14px 14px;
+        }
+
+        .btn-primary {
+          font-family: 'Jura', sans-serif;
+          font-size: 20px;
+          line-height: 22px;
+          text-transform: uppercase;
+        }
+      }
+
       .status-list {
         list-style: none;
         padding: 0px;
         margin-bottom: 0px;
 
         .status-item {
-          margin-bottom: 15px;
+          margin-bottom: 22px;
+
+          .modal {
+            font-size: 16px;
+
+            .modal-title {
+              text-transform: uppercase;
+              font-family: 'Jura', sans-serif;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 22px;
+            }
+
+            .modal-dialog {
+              margin-top: 150px;
+            }
+
+            .btn {
+              font-family: 'Jura', sans-serif;
+              font-size: 18px;
+              line-height: 20px;
+              text-transform: uppercase;
+            }
+          }
+
+          .delete-status {
+            border: 0px;
+            background-color: #000000;
+            padding: 2px 10px;
+            border-radius: 16px;
+            color: #ffffff;
+            display: inline;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 16px;
+            font-family: 'Jura', sans-serif;
+            margin-left: 10px;
+
+            .fa {
+              color: #ffffff;
+              font-size: 12px;
+              line-height: 12px;
+              margin-left: 5px;
+            }
+          }
           
           .status-avatar-box {
             width: 100px;
@@ -796,6 +860,13 @@ html, body {
               line-height: 20px;
               font-family: 'Jura', sans-serif;
             }
+          }
+
+          .status-time {
+            margin-bottom: 5px;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 16px;
           }
         }
       }

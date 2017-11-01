@@ -19,7 +19,7 @@ User.create( email: 'ngocquyhoang2911@gmail.com', username: 'ngocquyhoang2911', 
   Activity.create( user_id: index, activity_type: "update information" )
 end
 
-(3..60).each do |index|
+(2..60).each do |index|
   Relationship.create(follower_id: index, followed_id: 1)
   Activity.create( user_id: index, activity_type: "started following", activity_target: 1)
 end
