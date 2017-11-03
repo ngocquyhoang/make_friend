@@ -20,7 +20,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.text :high_school
       t.text :univesity
       t.datetime :dob
-      t.boolean :is_verified,           default: false
 
       ## Recoverable
       t.string   :reset_password_token,               unique: true

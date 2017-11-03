@@ -1,6 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  include AccessibleAdmin
-  skip_before_action :check_admin, only: [:edit, :update, :destroy]
   before_action :set_global_layout, only: :edit
 
   layout :user_layout
