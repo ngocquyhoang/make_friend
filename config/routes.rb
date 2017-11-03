@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  namespace :admins do
-    resources :dashboard, only: [:index]
-  end
-
-  devise_for :admins, path: 'admins', skip: :registrations, controllers: { 
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
-  }
-
   namespace :users do
     resources :dashboard, only: [:index]
     
@@ -24,11 +15,14 @@ Rails.application.routes.draw do
   patch 'upload_avatar/:id', to: 'users#upload_avatar', as: 'upload_avatar'
   put 'upload_avatar/:id', to: 'users#upload_avatar'
 
+  post 'update_status', to: 'users#update_status', as: 'update_status'
+
   post 'get_district_ajax', to: 'users#get_district_ajax', as: 'get_district_ajax'
   post 'get_commune_ajax', to: 'users#get_commune_ajax', as: 'get_commune_ajax'
   post 'get_highschool_district_ajax', to: 'users#get_highschool_district_ajax', as: 'get_highschool_district_ajax'
   post 'get_highschool_list_ajax', to: 'users#get_highschool_list_ajax', as: 'get_highschool_list_ajax'
   post 'check_username_ajax', to: 'users#check_username_ajax', as: 'check_username_ajax'
+  post 'delete_status_ajax', to: 'users#delete_status_ajax', as: 'delete_status_ajax'
 
   get ':username', to: 'users#show', as: :user
   

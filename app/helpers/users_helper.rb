@@ -25,8 +25,10 @@ module UsersHelper
     school_list = ActiveSupport::JSON.decode(File.read('databases/highschool_list.json'))
     school_list_fil = []
     school_list.each do |school|
-      if ( (province.include? school['Ten_Tinh']) || (school['Ten_Tinh'].include? province) ) && ( (school['Ten_Quan_Huyen'].include? district) || (district.include? school['Ten_Quan_Huyen']) )
-        school_list_fil << school 
+      unless province.nil? && district.nil?
+        if ( (province.include? school['Ten_Tinh']) || (school['Ten_Tinh'].include? province) ) && ( (school['Ten_Quan_Huyen'].include? district) || (district.include? school['Ten_Quan_Huyen']) )
+          school_list_fil << school 
+        end
       end
     end
 
@@ -69,5 +71,15 @@ module UsersHelper
     like_dislike_list = like_dislike_list.uniq
 
     return like_dislike_list
+  end
+
+  def set_activity(user, type, target )
+    unless ( type.blank? && user.blank? )
+      if target.blank?
+        Activity.create(activity_type: type, user_id: user.id )
+      else
+        Activity.create(activity_type: type, user_id: user.id, activity_target: target.id )
+      end
+    end
   end
 end

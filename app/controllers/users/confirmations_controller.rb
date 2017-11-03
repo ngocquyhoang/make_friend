@@ -1,6 +1,4 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  include AccessibleAdmin
-
   layout :user_layout
 
   protected

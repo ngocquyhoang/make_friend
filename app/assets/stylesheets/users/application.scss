@@ -226,6 +226,10 @@ html, body {
     &.ver-mid {
       vertical-align: middle;
     }
+
+    &.ver-top {
+      vertical-align: top;
+    }
   }
 }
 
@@ -698,6 +702,189 @@ html, body {
         display: block !important;
       }
     }
+  }
+
+  .user-content-box {
+
+    .user-infor-tab {
+      padding: 20px;
+      border: 1px solid #C63D0F;
+      border-radius: 5px;
+      margin-bottom: 20px;
+
+      .tab-container {
+        margin-top: 20px;
+        height: 250px;
+        overflow-y: auto;
+      }
+
+      .activities-list {
+        margin-bottom: 0px;
+
+        .activity-item {
+          line-height: 36px;
+          margin-bottom: 10px;
+        }
+
+        .activity-item:last-child {
+          margin-bottom: 0px;
+        }
+
+        .activity-time {
+          font-style: italic;
+          width: 125px;
+        }
+      }
+
+      .nav-tabs {
+        border-bottom: 1px solid #C63D0F;
+
+        .nav-link {
+          font-size: 18px;
+          text-transform: uppercase;
+        }
+
+        .nav-link:focus,
+        .nav-link:hover {
+          border-color: transparent;
+        }
+      }
+
+      .nav-tabs .nav-link.active {
+        border-color: #C63D0F #C63D0F #fff;
+      }
+    }
+
+    .user-status-box {
+      .user-contex-header {
+        font-size: 26px;
+        line-height: 30px;
+        text-transform: uppercase;
+        font-family: 'Jura', sans-serif;
+        margin-bottom: 20px;
+      }
+
+      .status-form {
+        margin-bottom: 20px;
+
+        #status_status {
+          font-size: 18px;
+          font-family: 'Jura', sans-serif;
+          line-height: 20px;
+          min-height: 80px;
+          max-height: 160px;
+          padding: 14px 14px;
+        }
+
+        .btn-primary {
+          font-family: 'Jura', sans-serif;
+          font-size: 20px;
+          line-height: 22px;
+          text-transform: uppercase;
+        }
+      }
+
+      .status-list {
+        list-style: none;
+        padding: 0px;
+        margin-bottom: 0px;
+
+        .status-item {
+          margin-bottom: 22px;
+
+          .modal {
+            font-size: 16px;
+
+            .modal-title {
+              text-transform: uppercase;
+              font-family: 'Jura', sans-serif;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 22px;
+            }
+
+            .modal-dialog {
+              margin-top: 150px;
+            }
+
+            .btn {
+              font-family: 'Jura', sans-serif;
+              font-size: 18px;
+              line-height: 20px;
+              text-transform: uppercase;
+            }
+          }
+
+          .delete-status {
+            border: 0px;
+            background-color: #000000;
+            padding: 2px 10px;
+            border-radius: 16px;
+            color: #ffffff;
+            display: inline;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 16px;
+            font-family: 'Jura', sans-serif;
+            margin-left: 10px;
+
+            .fa {
+              color: #ffffff;
+              font-size: 12px;
+              line-height: 12px;
+              margin-left: 5px;
+            }
+          }
+          
+          .status-avatar-box {
+            width: 100px;
+
+            .status-user-avatar {
+              padding-right: 10px;
+
+              img {
+                border-radius: 50px;
+                max-width: 100%;
+              }
+            }
+          }
+
+          .status-user-content {
+            padding: 12px;
+            border: 1px solid #C63D0F;
+            border-radius: 5px;
+
+            p {
+              margin-bottom: 0px;
+              font-style: 18px;
+              line-height: 20px;
+              font-family: 'Jura', sans-serif;
+            }
+          }
+
+          .status-time {
+            margin-bottom: 5px;
+            font-style: italic;
+            font-size: 14px;
+            line-height: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.stick-avatar {
+  display: inline-block;
+}
+
+.user-stick-list {
+  .stick-avatar {
+    padding: 4px 7px;
+    border: 1px solid #C63D0F;
+    border-radius: 60px;
+    margin-bottom: 10px;
+    margin-right: 15px;
   }
 }
 

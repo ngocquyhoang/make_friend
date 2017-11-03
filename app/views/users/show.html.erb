@@ -24,7 +24,107 @@
       </div>
       <div class="col-lg-8 col-md-12">
         <div class="user-content-box">
-          
+          <div class="user-infor-tab">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="#activiry_tab" role="tab" data-toggle="tab">Activities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#followers_tab" role="tab" data-toggle="tab">Followers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#following_tab" role="tab" data-toggle="tab">Following</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#friend_tab" role="tab" data-toggle="tab">Friend</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="activiry_tab">
+                <div class="tab-container">
+                  <ul class="list-unstyled activities-list">
+                    <% @activities.each do |activity| %>
+                      <li class="activity-item">
+                        <div class="table-panel">
+                          <div class="table-child ver-mid activity-time">
+                            <%= activity.created_at.in_time_zone('Hanoi').strftime("%b %d %H:%M") %>
+                          </div>
+                          <div class="table-child ver-mid">
+                            <%= activity_label activity %>
+                          </div>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="followers_tab">
+                <div class="tab-container">
+                  <div class="user-stick-list">
+                    <% @user.followers.each do |user| %>
+                      <%= stick_avatar_for user %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="following_tab">
+                <div class="tab-container">
+                  <div class="user-stick-list">
+                    <% @user.following.each do |user| %>
+                      <%= stick_avatar_for user %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="friend_tab">
+                <div class="tab-container">
+                  <div class="user-stick-list">
+                    <% (1..20).each do |index| %>
+                      <%= stick_avatar_for @user %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user-status-box">
+            <h2 class="user-contex-header">Status</h2>
+            <% if @user == current_user %>
+              <div class="status-form">
+                <%= form_for(Status.new, url: update_status_path, :remote => true, authenticity_token: true) do |f| %>
+                  <%= f.hidden_field :user_id, value: @user.id %>
+                  <div class="form-group">
+                    <%= f.text_area :status, autofocus: true, rows: 3, class: "status-field form-control form-control-lg" %>
+                  </div>
+                  <div class="form-group text-right">
+                    <%= f.submit "Update Status", class: "btn btn-lg btn-primary no-outline cursor-pointer" %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            <ul class="status-list">
+              <% @user_status.each do |status| %>
+                <%= render 'status_show', status_target: status %>
+              <% end %>
+            </ul>
+            <% if @user == current_user %>
+              <script type="text/javascript">
+                $('.js--delete-status').click(function(event) {
+                  $.ajax({
+                    url: '<%= delete_status_ajax_path %>',
+                    data: { 'status_id' : parseInt( $(this).attr('data-status-id') ) },
+                    type: 'post',
+                    success: function(result){
+                      if (result.success) {
+                        $('.status-item[data-status-id="' + result.status_id + '"]').hide();
+                        $('#deleteStatusModal_' + result.status_id).modal('hide');
+                      }
+                    }
+                  })
+                });
+              </script>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -85,26 +185,34 @@
                 </div>
                 <script type="text/javascript">
                   $('#user_username').keyup( function () {
+                    var usernameRegex = /^[a-z0-9]+$/;
                     if (this.value.length >= 6 && this.value.length <= 20) {
-                      $('#user_username').removeClass('is-invalid');
-                      $('#user_username_error').addClass('text-black');
-                      $.ajax({
-                        url: '<%= check_username_ajax_path %>',
-                        data: { 'username' : this.value },
-                        type: 'post',
-                        success: function(result){
-                          if (result.is_valid) {
-                            $('#user_username').removeClass('is-invalid');
-                            $('#user_username').addClass('is-valid');
-                            $('#user_username_error').text('( Between 6 and 20 characters for a username is acceptable )');
-                          }else {
-                            $('#user_username').removeClass('is-valid');
-                            $('#user_username').addClass('is-invalid');
-                            $('#user_username_error').removeClass('text-black');
-                            $('#user_username_error').text('( This username is already in use )');
-                          }
-                        }}
-                      );
+                      if ( usernameRegex.test(this.value) ) {
+                        $('#user_username').removeClass('is-invalid');
+                        $('#user_username_error').addClass('text-black');
+                        $.ajax({
+                          url: '<%= check_username_ajax_path %>',
+                          data: { 'username' : this.value },
+                          type: 'post',
+                          success: function(result){
+                            if (result.is_valid) {
+                              $('#user_username').removeClass('is-invalid');
+                              $('#user_username').addClass('is-valid');
+                              $('#user_username_error').text('( Between 6 and 20 characters for a username is acceptable )');
+                            }else {
+                              $('#user_username').removeClass('is-valid');
+                              $('#user_username').addClass('is-invalid');
+                              $('#user_username_error').removeClass('text-black');
+                              $('#user_username_error').text('( This username is invalid )');
+                            }
+                          }}
+                        );
+                      }else {
+                        $('#user_username').removeClass('is-valid');
+                        $('#user_username').addClass('is-invalid');
+                        $('#user_username_error').removeClass('text-black');
+                        $('#user_username_error').text('( This username is invalid )');
+                      };
                     }else {
                       $('#user_username').removeClass('is-valid');
                       $('#user_username').addClass('is-invalid');

@@ -1,6 +1,4 @@
 class Users::PasswordsController < Devise::PasswordsController
-  include AccessibleAdmin
-  
   layout :user_layout
 
   def send_instructions_successfull
