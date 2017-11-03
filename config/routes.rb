@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  namespace :admins do
-    resources :dashboard, only: [:index]
-  end
-
-  devise_for :admins, path: 'admins', skip: :registrations, controllers: { 
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
-  }
-
   namespace :users do
     resources :dashboard, only: [:index]
     

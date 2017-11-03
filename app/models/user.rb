@@ -12,10 +12,11 @@ class User < ApplicationRecord
 
   has_many :activities
   has_many :statuses
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "request_user_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "receive_user_id", dependent: :destroy
+  has_many :requesting, through: :active_relationships, source: :receive_user
+  has_many :receives, through: :passive_relationships, source: :request_user
 
   def soft_delete  
     update_attribute(:deleted_at, Time.current)  
@@ -29,16 +30,34 @@ class User < ApplicationRecord
     !deleted_at ? super : :deleted_account  
   end 
 
-  def follow(other_user)
-    following << other_user
+  def send_request( other_user )
+    requesting <<  other_user 
   end
 
-  def unfollow(other_user)
-    following.delete(other_user)
+  def cancel_request( other_user )
+    requesting.delete( other_user )
   end
 
-  def following?(other_user)
-    following.include?(other_user)
+  def accept_request( other_user )
+    Relationship.where( request_user_id: other_user.id, receive_user_id: self.id ).take.update(:is_accept => true)
+  end
+
+  def cancel_friend( other_user )
+    requesting.delete( other_user )
+  end
+
+  def is_friend?( other_user )
+    self.in_relation( other_user ) || other_user.in_relation( self )
+  end
+
+  def in_relation( other_user )
+    relation = Relationship.where( request_user_id: self.id, receive_user_id: other_user.id ).take
+
+    if relation.blank?
+      return false
+    else
+      return ( requesting.include?( other_user ) && relation.is_accept? ) ? true : false
+    end
   end
 
   def clean_username

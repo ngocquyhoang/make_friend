@@ -11,14 +11,9 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-md-4 col-sm-10 col-xs-12 home-nav-box">
-              <% if user_signed_in? || admin_signed_in? %>
-                <% if current_user %>
-                  <%= link_to "Go to Dashboard", users_dashboard_index_path, class: "btn btn-outline-light btn-lg btn-block" %>
-                  <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-lg btn-block" %>
-                <% elsif current_admin %>
-                  <%= link_to "Go to Dashboard", admins_dashboard_index_path, class: "btn btn-outline-light btn-lg btn-block" %>
-                  <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-lg btn-block" %>
-                <% end %>
+              <% if user_signed_in? %>
+                <%= link_to "Go to Dashboard", users_dashboard_index_path, class: "btn btn-outline-light btn-lg btn-block" %>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-lg btn-block" %>
               <% else %>
                 <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light btn-lg btn-block" %>
                 <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-light btn-lg btn-block margin-top-20" %>
