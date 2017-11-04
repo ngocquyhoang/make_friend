@@ -47,16 +47,16 @@ class User < ApplicationRecord
   end
 
   def is_friend?( other_user )
-    self.in_relation( other_user ) || other_user.in_relation( self )
+    self.in_relation( other_user, true ) || other_user.in_relation( self, true )
   end
 
-  def in_relation( other_user )
+  def in_relation( other_user, accept_param )
     relation = Relationship.where( request_user_id: self.id, receive_user_id: other_user.id ).take
 
     if relation.blank?
       return false
     else
-      return ( requesting.include?( other_user ) && relation.is_accept? ) ? true : false
+      return ( requesting.include?( other_user ) && ( relation.is_accept == accept_param ) ) ? true : false
     end
   end
 

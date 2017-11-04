@@ -29,12 +29,14 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#activiry_tab" role="tab" data-toggle="tab">Activities</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#followers_tab" role="tab" data-toggle="tab">Followers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#following_tab" role="tab" data-toggle="tab">Following</a>
-              </li>
+              <% if @user == current_user %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#followers_tab" role="tab" data-toggle="tab">Friend Request</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#following_tab" role="tab" data-toggle="tab">Requesting</a>
+                </li>
+              <% end %>
               <li class="nav-item">
                 <a class="nav-link" href="#friend_tab" role="tab" data-toggle="tab">Friend</a>
               </li>
@@ -58,29 +60,31 @@
                   </ul>
                 </div>
               </div>
-              <div role="tabpanel" class="tab-pane fade" id="followers_tab">
-                <div class="tab-container">
-                  <div class="user-stick-list">
-                    <% @user.followers.each do |user| %>
-                      <%= stick_avatar_for user %>
-                    <% end %>
+              <% if @user == current_user %>
+                <div role="tabpanel" class="tab-pane fade" id="followers_tab">
+                  <div class="tab-container">
+                    <div class="user-stick-list">
+                      <% @user.receives.each do |user| %>
+                        <%= stick_avatar_for user unless ( @user.is_friend? user ) %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div role="tabpanel" class="tab-pane fade" id="following_tab">
-                <div class="tab-container">
-                  <div class="user-stick-list">
-                    <% @user.following.each do |user| %>
-                      <%= stick_avatar_for user %>
-                    <% end %>
+                <div role="tabpanel" class="tab-pane fade" id="following_tab">
+                  <div class="tab-container">
+                    <div class="user-stick-list">
+                      <% @user.requesting.each do |user| %>
+                        <%= stick_avatar_for user unless ( @user.is_friend? user ) %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
               <div role="tabpanel" class="tab-pane fade" id="friend_tab">
                 <div class="tab-container">
                   <div class="user-stick-list">
-                    <% (1..20).each do |index| %>
-                      <%= stick_avatar_for @user %>
+                    <% User.all.each do |user| %>
+                      <%= stick_avatar_for user if ( @user.is_friend? user ) %>
                     <% end %>
                   </div>
                 </div>
@@ -102,11 +106,25 @@
                 <% end %>
               </div>
             <% end %>
-            <ul class="status-list">
-              <% @user_status.each do |status| %>
-                <%= render 'status_show', status_target: status %>
-              <% end %>
-            </ul>
+            <% if @user == current_user || ( current_user.is_friend? @user ) %>
+              <ul class="status-list">
+                <% @user_status.each do |status| %>
+                  <%= render 'status_show', status_target: status %>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="access-no-status text-center">
+                Make friend with <%= stick_avatar_for @user %> to see status 
+
+                <div class="access-button-block" id="makeFriendBlock">
+                  <% if current_user.in_relation( @user, false ) %>
+                    <%= render 'pending_accept', user_target: @user %>
+                  <% else %>
+                    <%= render 'send_request', user_target: @user %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
             <% if @user == current_user %>
               <script type="text/javascript">
                 $('.js--delete-status').click(function(event) {

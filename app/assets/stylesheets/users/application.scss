@@ -764,6 +764,44 @@ html, body {
         margin-bottom: 20px;
       }
 
+      .access-no-status {
+        font-size: 18px;
+
+        .access-button-block {
+          margin-top: 20px;
+        }
+
+        .make-friend-btn {
+          font-size: 18px;
+          line-height: 20px;
+          text-transform: uppercase;
+          padding: 15px 25px;
+        }
+      }
+
+      #makeFriendModal {
+        font-size: 18px;
+
+        .modal-title {
+          text-transform: uppercase;
+          font-family: 'Jura', sans-serif;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 22px;
+        }
+
+        .modal-dialog {
+          margin-top: 150px;
+        }
+
+        .btn {
+          font-family: 'Jura', sans-serif;
+          font-size: 18px;
+          line-height: 20px;
+          text-transform: uppercase;
+        }
+      }
+
       .status-form {
         margin-bottom: 20px;
 

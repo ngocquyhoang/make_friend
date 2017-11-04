@@ -89,18 +89,5 @@
         </div>
       </li>
     <% end %>
-    <li>
-      <div class="verify-user-block">
-        <% if user_target.is_verified? %>
-          <button type="button" class="no-outline verify-user is-verified" > 
-            Verified user <i class="fa fa-check-circle" aria-hidden="true"></i>
-          </button>
-        <% else %>
-          <button type="button" class="no-outline verify-user is-pending" >
-            Pending verify <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-          </button>
-        <% end %>
-      </div>
-    </li>
   </ul>
 </div>
