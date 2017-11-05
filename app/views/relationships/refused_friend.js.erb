@@ -1,0 +1,5 @@
+$('#acceptFriendModal').modal('hide');
+
+setTimeout(function(){ 
+  $("#makeFriendBlock").html("<%= escape_javascript( render 'users/send_request', user_target: @user ) %>");
+}, 500);

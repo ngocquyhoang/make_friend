@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171024172056) do
     t.text "high_school"
     t.text "univesity"
     t.datetime "dob"
+    t.integer "trust_point", default: 200, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

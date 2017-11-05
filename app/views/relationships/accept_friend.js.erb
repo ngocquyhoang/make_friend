@@ -1,0 +1,5 @@
+$('#acceptFriendModal').modal('hide');
+
+setTimeout(function(){ 
+  $(".js--access-status").html("<%= escape_javascript( render 'users/status_box', status_list: @user_status ) %>");
+}, 500);

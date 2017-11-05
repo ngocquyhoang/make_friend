@@ -764,6 +764,46 @@ html, body {
         margin-bottom: 20px;
       }
 
+      .access-no-status {
+        font-size: 18px;
+
+        .access-button-block {
+          margin-top: 20px;
+        }
+
+        .make-friend-btn {
+          font-size: 18px;
+          line-height: 20px;
+          text-transform: uppercase;
+          padding: 15px 25px;
+        }
+      }
+
+      #makeFriendModal,
+      #cancelFriendModal,
+      #acceptFriendModal {
+        font-size: 18px;
+
+        .modal-title {
+          text-transform: uppercase;
+          font-family: 'Jura', sans-serif;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 22px;
+        }
+
+        .modal-dialog {
+          margin-top: 150px;
+        }
+
+        .btn {
+          font-family: 'Jura', sans-serif;
+          font-size: 18px;
+          line-height: 20px;
+          text-transform: uppercase;
+        }
+      }
+
       .status-form {
         margin-bottom: 20px;
 
@@ -774,6 +814,7 @@ html, body {
           min-height: 80px;
           max-height: 160px;
           padding: 14px 14px;
+          border-color: #C63D0F;
         }
 
         .btn-primary {
@@ -864,6 +905,7 @@ html, body {
 
           .status-time {
             margin-bottom: 5px;
+            text-align: left;
             font-style: italic;
             font-size: 14px;
             line-height: 16px;
