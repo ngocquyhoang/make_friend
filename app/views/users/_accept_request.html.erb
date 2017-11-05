@@ -1,0 +1,28 @@
+<a href="#" data-toggle="modal" data-target="#acceptFriendModal" class="btn btn-success make-friend-btn no-outline">
+  Accept request
+</a>
+<div class="modal fade" id="acceptFriendModal" tabindex="-1" role="dialog" aria-labelledby="cancelFriendModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelFriendModalLabel">Are you sure ?</h5>
+        <button type="button" class="close cursor-pointer no-outline" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Accept friend request from <%= stick_avatar_for user_target %>
+      </div>
+      <div class="modal-footer">
+        <%= form_tag( refused_friend_path , method: :post, remote: true, authenticity_token: true ) do %>
+          <%= hidden_field_tag 'user_id', user_target.id %>
+          <button type="submit" class="btn btn-danger cursor-pointer no-outline">decline</button>
+        <% end %>
+        <%= form_tag( accept_friend_path , method: :post, remote: true, authenticity_token: true ) do %>
+          <%= hidden_field_tag 'user_id', user_target.id %>
+          <button type="submit" class="btn btn-success cursor-pointer no-outline">accept</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

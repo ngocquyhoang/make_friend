@@ -113,12 +113,14 @@
                 <% end %>
               </ul>
             <% else %>
-              <div class="access-no-status text-center">
+              <div class="access-no-status text-center js--access-status">
                 Make friend with <%= stick_avatar_for @user %> to see status 
 
                 <div class="access-button-block" id="makeFriendBlock">
                   <% if current_user.in_relation( @user, false ) %>
                     <%= render 'pending_accept', user_target: @user %>
+                  <% elsif @user.in_relation( current_user, false ) %>
+                    <%= render 'accept_request', user_target: @user %>
                   <% else %>
                     <%= render 'send_request', user_target: @user %>
                   <% end %>

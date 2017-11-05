@@ -42,8 +42,8 @@ class User < ApplicationRecord
     Relationship.where( request_user_id: other_user.id, receive_user_id: self.id ).take.update(:is_accept => true)
   end
 
-  def cancel_friend( other_user )
-    requesting.delete( other_user )
+  def refused_request( other_user )
+    receives.delete( other_user )
   end
 
   def is_friend?( other_user )
@@ -62,5 +62,10 @@ class User < ApplicationRecord
 
   def clean_username
     self.username = UnicodeUtils.downcase("#{self.username}", :tr).gsub(/[()-,. @*&$#^!']/, '')
+  end
+
+  def add_point( point )
+    self.trust_point += point
+    self.save
   end
 end

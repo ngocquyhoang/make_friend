@@ -779,7 +779,9 @@ html, body {
         }
       }
 
-      #makeFriendModal {
+      #makeFriendModal,
+      #cancelFriendModal,
+      #acceptFriendModal {
         font-size: 18px;
 
         .modal-title {
@@ -812,6 +814,7 @@ html, body {
           min-height: 80px;
           max-height: 160px;
           padding: 14px 14px;
+          border-color: #C63D0F;
         }
 
         .btn-primary {
@@ -902,6 +905,7 @@ html, body {
 
           .status-time {
             margin-bottom: 5px;
+            text-align: left;
             font-style: italic;
             font-size: 14px;
             line-height: 16px;

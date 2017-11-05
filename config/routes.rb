@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   patch 'upload_avatar/:id', to: 'users#upload_avatar', as: 'upload_avatar'
   put 'upload_avatar/:id', to: 'users#upload_avatar'
 
+  resources :relationships, only: [:create, :destroy]
+  post 'accept_friend', to: 'relationships#accept_friend', as: 'accept_friend'
+  post 'refused_friend', to: 'relationships#refused_friend', as: 'refused_friend'
+
   post 'update_status', to: 'users#update_status', as: 'update_status'
 
   post 'get_district_ajax', to: 'users#get_district_ajax', as: 'get_district_ajax'

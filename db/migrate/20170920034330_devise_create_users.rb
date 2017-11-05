@@ -20,6 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.text :high_school
       t.text :univesity
       t.datetime :dob
+      t.integer :trust_point,       null: false, default: 200
 
       ## Recoverable
       t.string   :reset_password_token,               unique: true

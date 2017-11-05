@@ -1,22 +1,25 @@
-<a href="#" class="btn btn-warning make-friend-btn no-outline">
-  Pending accept
-</a>
-<div class="modal fade" id="cancelFriendModal" tabindex="-1" role="dialog" aria-labelledby="makeFriendModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="cancelFriendModalLabel">Are you sure ?</h5>
-        <button type="button" class="close cursor-pointer no-outline" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Cancel your friend request to <%= stick_avatar_for user_target %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary cursor-pointer no-outline" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary cursor-pointer no-outline">Yes</button>
+<%= form_for(current_user.active_relationships.find_by(receive_user_id: user_target.id), html: { method: :delete }, remote: true, authenticity_token: true) do |f| %>
+  
+  <a href="#" data-toggle="modal" data-target="#cancelFriendModal" class="btn btn-warning make-friend-btn no-outline">
+    Pending accept
+  </a>
+  <div class="modal fade" id="cancelFriendModal" tabindex="-1" role="dialog" aria-labelledby="cancelFriendModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cancelFriendModalLabel">Are you sure ?</h5>
+          <button type="button" class="close cursor-pointer no-outline" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Cancel your friend request to <%= stick_avatar_for user_target %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary cursor-pointer no-outline" data-dismiss="modal">No</button>
+          <button type="submit" class="btn btn-primary cursor-pointer no-outline">Yes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

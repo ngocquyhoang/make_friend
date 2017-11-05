@@ -1,0 +1,5 @@
+<ul class='status-list'>
+  <% status_list.each do |status| %>
+    <%= render 'users/status_show', status_target: status %>
+  <% end %>
+</ul>

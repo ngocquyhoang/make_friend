@@ -9,7 +9,9 @@ class UsersController < Users::AccessController
     :get_highschool_list_ajax,
     :check_username_ajax,
     :delete_status_ajax,
-    :update_status
+    :update_status,
+    :send_friend_request,
+    :cancel_friend_request
   ]
 
   def show
@@ -35,9 +37,12 @@ class UsersController < Users::AccessController
   def upload_avatar
     if @user == current_user
       respond_to do |format|
-        if @user.update(user_avatar_params)
-          @user.reload
-          set_activity(@user, "update avatar", nil)
+        unless params[:user].blank?
+          @user.add_point( 20 ) if @user.avatar.blank?
+          if @user.update(user_avatar_params)
+            @user.reload
+            set_activity(@user, "update avatar", nil)
+          end
         end
         format.js {}
       end
@@ -45,15 +50,57 @@ class UsersController < Users::AccessController
   end
 
   def update_information
-    infor_params = user_information_params.to_h
-    infor_params[:job].shift
-    infor_params[:job] = infor_params[:job].join("|")
-    infor_params[:hobby].shift
-    infor_params[:hobby] = infor_params[:hobby].join("|")
-    infor_params[:dislike].shift
-    infor_params[:dislike] = infor_params[:dislike].join("|")
-
     if @user == current_user
+      infor_params = user_information_params.to_h
+      infor_params[:job].shift
+      if @user.job.blank?
+        job_point = infor_params[:job].length
+      else
+        if infor_params[:job].length > @user.job.split("|").length
+          job_point = infor_params[:job].length - @user.job.split("|").length
+        else
+          job_point = 0
+        end
+      end
+      @user.add_point( job_point*5 )
+      infor_params[:job] = infor_params[:job].join("|")
+      infor_params[:hobby].shift
+      if @user.hobby.blank?
+        hobby_point = infor_params[:hobby].length
+      else
+        if infor_params[:hobby].length > @user.hobby.split("|").length
+          hobby_point = infor_params[:hobby].length - @user.hobby.split("|").length
+        else
+          hobby_point = 0
+        end
+      end
+      @user.add_point( hobby_point*5 )
+      infor_params[:hobby] = infor_params[:hobby].join("|")
+      infor_params[:dislike].shift
+      if @user.dislike.blank?
+        dislike_point = infor_params[:dislike].length
+      else
+        if infor_params[:dislike].length > @user.dislike.split("|").length
+          dislike_point = infor_params[:dislike].length - @user.dislike.split("|").length
+        else
+          dislike_point = 0
+        end
+      end
+      @user.add_point( dislike_point*5 )
+      infor_params[:dislike] = infor_params[:dislike].join("|")
+
+      @user.add_point( 10 ) if ( @user.username.blank? && !infor_params[:username].blank? )
+      @user.add_point( 10 ) if ( @user.name.blank? && !infor_params[:name].blank? )
+      @user.add_point( 10 ) if ( @user.gender.blank? && !infor_params[:gender].blank? )
+      @user.add_point( 10 ) if ( @user.dob.blank? && !infor_params[:dob].blank? )
+      @user.add_point( 10 ) if ( @user.address_commune.blank? && !infor_params[:address_commune].blank? )
+      @user.add_point( 10 ) if ( @user.address_district.blank? && !infor_params[:address_district].blank? )
+      @user.add_point( 10 ) if ( @user.address_province.blank? && !infor_params[:address_province].blank? )
+      @user.add_point( 10 ) if ( @user.highschool_province.blank? && !infor_params[:highschool_province].blank? )
+      @user.add_point( 10 ) if ( @user.highschool_district.blank? && !infor_params[:highschool_district].blank? )
+      @user.add_point( 10 ) if ( @user.high_school.blank? && !infor_params[:high_school].blank? )
+      @user.add_point( 10 ) if ( @user.univesity.blank? && !infor_params[:univesity].blank? )
+
       respond_to do |format|
         if @user.update(infor_params)
           @user.reload

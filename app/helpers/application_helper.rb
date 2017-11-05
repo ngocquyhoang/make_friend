@@ -47,10 +47,16 @@ module ApplicationHelper
       return "#{stick_avatar_for activity.user} was update his status".html_safe
     when "being friend"
       return "#{stick_avatar_for activity.user} and #{stick_avatar_for( User.find activity.activity_target )} now is friend".html_safe
-    when "started following"
-      return "#{stick_avatar_for activity.user} started following #{stick_avatar_for( User.find activity.activity_target )}".html_safe
+    when "send friend request"
+      return "#{stick_avatar_for activity.user} send friend request to #{stick_avatar_for( User.find activity.activity_target )}".html_safe
+    when "accept friend request"
+      return "#{stick_avatar_for activity.user} accept friend request from #{stick_avatar_for( User.find activity.activity_target )}".html_safe
+    when "cancel friend request"
+      return "#{stick_avatar_for activity.user} cancel friend request to #{stick_avatar_for( User.find activity.activity_target )}".html_safe
+    when "decline friend request"
+      return "#{stick_avatar_for activity.user} decline friend request from #{stick_avatar_for( User.find activity.activity_target )}".html_safe
     else
-      return "#{stick_avatar_for activity.user} was update his information".html_safe
+      return "#{stick_avatar_for activity.user} was update information".html_safe
     end
   end
 
