@@ -1,5 +1,69 @@
 <div class="user-main-wrap">
   <div class="container">
-    <h1>User Dashboard</h1>
+    <div class="section-dashboard user-receives-list">
+      <div class="section-header">
+        Your friend request
+      </div>
+      <div class="section-body user-stick-list">
+        <% @user.receives.each do |user| %>
+          <%= stick_avatar_for user unless ( @user.is_friend? user ) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="section-dashboard user-suggestions-list">
+      <div class="section-header">
+        Friend Suggestions
+      </div>
+      <div class="section-body user-stick-list">
+        <% @new_suggestions_point.each do |user| %>
+          <%= stick_avatar_for user unless ( @user.is_friend? user ) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="section-dashboard user-wall-list">
+      <div class="section-header">
+        My Wall
+      </div>
+      <div class="section-body">
+        <ul class="wall-list">
+          <% @new_wall_list.each do |element| %>
+            <li class="wall-item">
+              <% if element[:type] == "activity" %>
+                <div class="activity-item">
+                  <div class="table-panel">
+                    <div class="table-child ver-mid activity-time">
+                      <%= element[:target].created_at.in_time_zone('Hanoi').strftime("%b %d %H:%M") %>
+                    </div>
+                    <div class="table-child ver-mid">
+                      <%= activity_label element[:target] %>
+                    </div>
+                  </div>
+                </div>
+              <% else %>
+                <%= render 'users/status_show', status_target: element[:target] %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+        <% if @user == current_user %>
+          <script type="text/javascript">
+            $('.js--delete-status').click(function(event) {
+              $.ajax({
+                url: '<%= delete_status_ajax_path %>',
+                data: { 'status_id' : parseInt( $(this).attr('data-status-id') ) },
+                type: 'post',
+                success: function(result){
+                  if (result.success) {
+                    $('.status-item[data-status-id="' + result.status_id + '"]').hide();
+                    $('#deleteStatusModal_' + result.status_id).modal('hide');
+                  }
+                }
+              })
+            });
+          </script>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
