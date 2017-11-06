@@ -14,7 +14,7 @@
       </li>
     <% end %>
     <% if user_target.dob? %>
-      <li class="infor-line text-center"><b><%= user_target.dob.strftime("%Y %B %d") %> - <%= get_age user_target.dob %> years old </b></li>
+      <li class="infor-line text-center"><b><%= user_target.dob.strftime("%Y %B %d") %> - <%= user_target.get_age %> years old </b></li>
     <% end %>
     <% if user_target.address_commune? || user_target.address_district? || user_target.address_province? %>
       <li class="infor-line">

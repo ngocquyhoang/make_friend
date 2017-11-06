@@ -68,4 +68,59 @@ class User < ApplicationRecord
     self.trust_point += point
     self.save
   end
+
+  def get_age
+    if self.dob.nil?
+      return 0
+    else
+      now = Time.now
+      age = now.year - self.dob.year - ( self.dob.to_time.change(:year => now.year) > now ? 1 : 0 )
+      return age
+    end
+  end
+
+  def match_point( other_user )
+    mp = 0
+    mp += 10 if ( self.get_age - other_user.get_age ).abs <= 5 
+
+    if self.address_province == other_user.address_province
+      mp += 15
+      if self.address_district == other_user.address_district
+        mp += 30
+        mp += 45 if self.address_commune == other_user.address_commune
+      end
+    end
+
+    if self.highschool_province == other_user.highschool_province
+      mp += 15
+      if self.highschool_district == other_user.highschool_district
+        mp += 30
+        mp += 45 if self.high_school == other_user.high_school
+      end
+    end
+
+    mp += 45 if self.univesity == other_user.univesity
+    
+    if self.job.present? && other_user.job.present?
+      self.job.split("|").each do |job|
+        mp += 30 if other_user.job.split("|").include?(job)
+      end
+    end
+    
+    if self.hobby.present? && other_user.hobby.present?
+      self.hobby.split("|").each do |hobby|
+        mp += 20 if other_user.hobby.split("|").include?(hobby)
+        mp += -20 if other_user.dislike.split("|").include?(hobby)
+      end
+    end
+
+    if self.dislike.present? && other_user.dislike.present?
+      self.dislike.split("|").each do |dislike|
+        mp += 15 if other_user.dislike.split("|").include?(dislike)
+        mp += -20 if other_user.hobby.split("|").include?(dislike)
+      end
+    end
+
+    return mp
+  end
 end
