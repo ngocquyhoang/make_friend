@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   before_save :clean_username
   VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
-  validates :username, uniqueness: true, length: { in: 6..20 }, format: { with: VALID_USERNAME_REGEX }
+  validates :username, uniqueness: true, length: { in: 6..20 }, format: { with: VALID_USERNAME_REGEX }, allow_blank: true
 
   has_many :activities
   has_many :statuses
